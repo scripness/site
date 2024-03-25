@@ -13,11 +13,11 @@ pub fn App() -> impl IntoView {
         <Stylesheet id="leptos" href="/pkg/scripness.css"/>
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="Andrei Scripcaru"/>
 
         // content for this welcome page
         <Router>
-            <main>
+            <main class="container mx-auto">
                 <Routes>
                     <Route path="" view=HomePage/>
                     <Route path="/*any" view=NotFound/>
