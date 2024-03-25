@@ -21,6 +21,8 @@ COPY --from=builder /work/target/site /app/site
 COPY --from=builder /work/Cargo.toml /app/
 
 EXPOSE $PORT
+
 ENV LEPTOS_SITE_ROOT=./site
+ENV LEPTOS_ENV=PROD
 
 CMD ["/app/scripness"]
