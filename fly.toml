@@ -1,3 +1,8 @@
+# fly.toml app configuration file generated for scripness on 2024-03-26T01:41:46+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = 'scripness'
 primary_region = 'ams'
 
