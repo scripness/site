@@ -31,15 +31,11 @@
         "ui"
       ],
       "priority": 1,
-      "passes": true,
+      "passes": false,
       "retries": 0,
       "blocked": false,
-      "lastResult": {
-        "completedAt": "2026-02-12T23:29:15+02:00",
-        "commit": "04486fc",
-        "summary": "feat: US-001 - Rewrite the layout header text"
-      },
-      "notes": "",
+      "lastResult": null,
+      "notes": "pre-verify failed: browser verification failed: step assertText failed: text 'Andrei Scripcaru' not found in element (got: 'ANDREI SCRIPCARU\n\nFull-stack software engineer\n\nmail@scripness.com\nDownload resume')",
       "browserSteps": [
         {
           "action": "navigate",
