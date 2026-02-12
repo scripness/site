@@ -15,7 +15,9 @@
       "Browser text assertions on elements with CSS text-transform (e.g., `uppercase` class) will see the transformed text (\"ANDREI SCRIPCARU\"), not the source text (\"Andrei Scripcaru\"). Use case-insensitive matching or match against the CSS-transformed form in browser tests.",
       "HEEx templates render \u0026 as literal \u0026 in html_response (not \u0026amp;), so test assertions should match the un-encoded character or split the assertion to avoid the ampersand.",
       "When counting \"engagements\" for the projects section, count all named company entries plus Independent Freelancing as distinct entries (14 total in this resume).",
-      "Browser text assertions on elements with CSS text-transform (e.g., uppercase class) will see the transformed text, not the source text. Use case-insensitive matching or match against the CSS-transformed form in browser tests."
+      "Browser text assertions on elements with CSS text-transform (e.g., uppercase class) will see the transformed text, not the source text. Use case-insensitive matching or match against the CSS-transformed form in browser tests.",
+      "The \"14 engagements\" count in the projects section includes 4 featured + 9 compact + 1 Independent Freelancing = 14 total.",
+      "Featured project cards use different warm border-t colors for visual distinction: #7b4a2c, #a0826d, #c7b3a4, #d4a983."
     ]
   },
   "userStories": [
