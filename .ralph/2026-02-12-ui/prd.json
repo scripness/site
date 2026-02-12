@@ -12,7 +12,10 @@
       "Compact project cards use simpler styling than featured cards: `rounded-2xl border border-[#e0d2c4] bg-white/70 p-4` vs featured's `rounded-[28px] border border-white/30 border-t-2 ... bg-white/65 p-6 shadow-...`. Both tiers live within the same Projects `\u003csection\u003e`.",
       "The freelance aggregate card uses dark styling (bg-[#1a0f09]/90, border-white/10, text-white) matching the \"Roles I'm best for\" card at the top. It sits as the last element inside the Projects section, after the compact tier grid. Tech pills use border-white/20 and text-white/70 for the dark-on-dark style.",
       "HEEx templates render \u0026 as literal \u0026 in html_response (not \u0026amp;), so test assertions should match the un-encoded character",
-      "Browser text assertions on elements with CSS text-transform (e.g., `uppercase` class) will see the transformed text (\"ANDREI SCRIPCARU\"), not the source text (\"Andrei Scripcaru\"). Use case-insensitive matching or match against the CSS-transformed form in browser tests."
+      "Browser text assertions on elements with CSS text-transform (e.g., `uppercase` class) will see the transformed text (\"ANDREI SCRIPCARU\"), not the source text (\"Andrei Scripcaru\"). Use case-insensitive matching or match against the CSS-transformed form in browser tests.",
+      "HEEx templates render \u0026 as literal \u0026 in html_response (not \u0026amp;), so test assertions should match the un-encoded character or split the assertion to avoid the ampersand.",
+      "When counting \"engagements\" for the projects section, count all named company entries plus Independent Freelancing as distinct entries (14 total in this resume).",
+      "Browser text assertions on elements with CSS text-transform (e.g., uppercase class) will see the transformed text, not the source text. Use case-insensitive matching or match against the CSS-transformed form in browser tests."
     ]
   },
   "userStories": [
