@@ -141,4 +141,85 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "<details"
     assert body =~ "<summary"
   end
+
+  test "compact tier has 'More work' label", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "More work"
+  end
+
+  test "compact tier shows all remaining project company names", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Rio"
+    assert body =~ "Crawless"
+    assert body =~ "Deditech Com"
+    assert body =~ "eToro"
+    assert body =~ "MKM"
+    assert body =~ "GoodLeap"
+    assert body =~ "RentInsider"
+    assert body =~ "Virail"
+    assert body =~ "Deutsche Fintech Solutions"
+  end
+
+  test "compact tier cards show one-line descriptions", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "live-streaming platform"
+    assert body =~ "browser automation IDE"
+    assert body =~ "B2B CRM"
+    assert body =~ "job seekers and recruiters"
+    assert body =~ "e-commerce platform"
+    assert body =~ "solar financing platform"
+    assert body =~ "rental platform"
+    assert body =~ "travel search engine"
+    assert body =~ "micro-frontend architecture"
+  end
+
+  test "compact tier cards contain resume bullet points on expand", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # GoodLeap expanded content
+    assert body =~ "DocuSign and payment workflows"
+
+    # RentInsider expanded content
+    assert body =~ "Python backend"
+
+    # Virail expanded content
+    assert body =~ "Elasticsearch for performance"
+
+    # Deutsche Fintech expanded content
+    assert body =~ "B2C/B2B financial apps"
+  end
+
+  test "compact tier cards contain tech stack pills", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # Rio tech
+    assert body =~ "Vue/Nuxt"
+
+    # GoodLeap tech
+    assert body =~ "AWS (Lambda, SQS, S3)"
+
+    # Deutsche Fintech tech
+    assert body =~ "Svelte"
+    assert body =~ "Luigi/Micro-frontends"
+
+    # Virail tech
+    assert body =~ "PHP/Phalcon"
+  end
+
+  test "compact tier uses native details elements", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # The page should have many details elements (4 featured + 9 compact + ask me about)
+    # Just verify the compact-specific card classes exist
+    assert body =~ "rounded-2xl border border-[#e0d2c4] bg-white/70 p-4"
+  end
 end
