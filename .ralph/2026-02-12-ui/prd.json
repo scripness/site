@@ -5,7 +5,7 @@
   "description": "Rewrite site content to be honest and grounded in the resume PDF as the single source of truth. Replace marketing copy with minimal, factual text. Add two-tier projects section with progressive disclosure.",
   "run": {
     "startedAt": "2026-02-12T23:28:12+02:00",
-    "currentStoryId": "US-007",
+    "currentStoryId": null,
     "learnings": [
       "HEEx templates render `\u0026` as literal `\u0026` in html_response (not `\u0026amp;`), so test assertions should match the un-encoded character or split the assertion to avoid the ampersand.",
       "The HEEx formatter auto-reformats inline `\u003cspan\u003e` content to multi-line when tags have long class lists — don't fight it, let `mix format` handle it.",
@@ -349,10 +349,14 @@
         "ui"
       ],
       "priority": 7,
-      "passes": false,
+      "passes": true,
       "retries": 0,
       "blocked": false,
-      "lastResult": null,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:40:53+02:00",
+        "commit": "0398aa5",
+        "summary": "feat: US-007 - Replace How I work with honest working style"
+      },
       "notes": "",
       "browserSteps": [
         {
