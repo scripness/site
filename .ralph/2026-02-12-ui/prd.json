@@ -5,7 +5,7 @@
   "description": "Rewrite site content to be honest and grounded in the resume PDF as the single source of truth. Replace marketing copy with minimal, factual text. Add two-tier projects section with progressive disclosure.",
   "run": {
     "startedAt": "2026-02-12T23:28:12+02:00",
-    "currentStoryId": "US-001",
+    "currentStoryId": null,
     "learnings": []
   },
   "userStories": [
@@ -24,10 +24,14 @@
         "ui"
       ],
       "priority": 1,
-      "passes": false,
+      "passes": true,
       "retries": 0,
       "blocked": false,
-      "lastResult": null,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:29:15+02:00",
+        "commit": "04486fc",
+        "summary": "feat: US-001 - Rewrite the layout header text"
+      },
       "notes": "",
       "browserSteps": [
         {
