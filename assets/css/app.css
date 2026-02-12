@@ -1,0 +1,47 @@
+/* See the Tailwind configuration guide for advanced usage
+   https://tailwindcss.com/docs/configuration */
+
+@import "tailwindcss" source(none);
+@source "../css";
+@source "../js";
+@source "../../lib/scripness_web";
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap");
+
+/* A Tailwind plugin that makes "hero-#{ICON}" classes available.
+   The heroicons installation itself is managed by your mix.exs */
+@plugin "../vendor/heroicons";
+
+/* Add variants based on LiveView classes */
+@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
+@custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
+@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
+
+/* Make LiveView wrapper divs transparent for layout */
+[data-phx-session],
+[data-phx-teleported-src] {
+  display: contents;
+}
+
+body {
+  font-family: "Source Sans 3", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  color: #1d120c;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 226, 189, 0.55), transparent 55%),
+    radial-gradient(circle at 88% 18%, rgba(255, 193, 202, 0.3), transparent 45%),
+    radial-gradient(circle at 20% 88%, rgba(213, 196, 255, 0.2), transparent 55%),
+    linear-gradient(160deg, #f4efe7 0%, #f6e6d5 50%, #f2ddd0 100%);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Cormorant Garamond", "Iowan Old Style", serif;
+}
+
+::selection {
+  background: rgba(181, 117, 79, 0.25);
+}
