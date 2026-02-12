@@ -60,4 +60,85 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ ~s(href="/assets/Andrei%20Scripcaru%20-%20Technical.pdf")
     refute body =~ "Start a conversation"
   end
+
+  test "projects section has factual heading and engagement count", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Projects"
+    assert body =~ "14 engagements"
+    refute body =~ "Proof of impact"
+  end
+
+  test "featured project cards present for FinancialDocs, NIXAP, Dispatch42, Travod", %{
+    conn: conn
+  } do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "FinancialDocs"
+    assert body =~ "NIXAP"
+    assert body =~ "Dispatch42"
+    assert body =~ "Travod"
+  end
+
+  test "featured project cards show role titles from resume", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Full-Stack Engineer"
+    assert body =~ "Full-Stack Developer"
+    assert body =~ "Contract"
+    assert body =~ "Full-Time"
+  end
+
+  test "featured project cards contain resume bullet points", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # FinancialDocs bullets
+    assert body =~ "2,000+ service classes"
+    assert body =~ "legaldocs.com"
+    assert body =~ "webhook-based caching system"
+
+    # NIXAP bullets
+    assert body =~ "multi-tenant VoIP system"
+
+    # Dispatch42 bullets
+    assert body =~ "serverless notifications system"
+
+    # Travod bullets
+    assert body =~ "Traduno"
+    assert body =~ "GraphQL API layer"
+  end
+
+  test "featured project cards contain tech stack pills", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # FinancialDocs tech
+    assert body =~ "PayloadCMS"
+    assert body =~ "MongoDB"
+
+    # NIXAP tech
+    assert body =~ "Electron"
+    assert body =~ "RabbitMQ"
+
+    # Dispatch42 tech
+    assert body =~ "Kotlin"
+    assert body =~ "AWS"
+
+    # Travod tech
+    assert body =~ "Ruby/Rails"
+    assert body =~ "RSpec"
+  end
+
+  test "featured project cards use native details elements", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # Verify details/summary elements are used
+    assert body =~ "<details"
+    assert body =~ "<summary"
+  end
 end
