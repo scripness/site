@@ -4,8 +4,8 @@
   "branchName": "ralph/ui",
   "description": "Rewrite site content to be honest and grounded in the resume PDF as the single source of truth. Replace marketing copy with minimal, factual text. Add two-tier projects section with progressive disclosure.",
   "run": {
-    "startedAt": null,
-    "currentStoryId": null,
+    "startedAt": "2026-02-12T23:28:12+02:00",
+    "currentStoryId": "US-001",
     "learnings": []
   },
   "userStories": [
@@ -20,7 +20,9 @@
         "Typecheck passes (mix compile --warnings-as-errors)",
         "Tests pass (mix test)"
       ],
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "priority": 1,
       "passes": false,
       "retries": 0,
@@ -28,17 +30,33 @@
       "lastResult": null,
       "notes": "",
       "browserSteps": [
-        {"action": "navigate", "url": "/"},
-        {"action": "assertText", "selector": "header", "contains": "Andrei Scripcaru"},
-        {"action": "assertText", "selector": "header a[href='mailto:mail@scripness.com']", "contains": "mail@scripness.com"},
-        {"action": "assertVisible", "selector": "header a[href*='Andrei%20Scripcaru']"},
-        {"action": "screenshot"}
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "header",
+          "contains": "Andrei Scripcaru"
+        },
+        {
+          "action": "assertText",
+          "selector": "header a[href='mailto:mail@scripness.com']",
+          "contains": "mail@scripness.com"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "header a[href*='Andrei%20Scripcaru']"
+        },
+        {
+          "action": "screenshot"
+        }
       ]
     },
     {
       "id": "US-002",
       "title": "Rewrite the hero section",
-      "description": "As a visitor, I want the hero to state what Andrei does factually, without marketing language.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex` (lines 1-39)\n\nCurrent problems:\n- Line 4-6: Uppercase label says \"Systems, product, and delivery\" — not grounded in resume\n- Line 7-9: Headline says \"I help teams ship complex platforms and make the real work visible\" — marketing copy, not factual\n- Line 10-13: Description claims \"specialize in multi-tenant SaaS, legacy modernization, and AI-assisted delivery\" — overclaims\n- Line 15-24: Skill tags say \"System architecture\", \"Full-stack delivery\", \"AI-accelerated teams\" — partially invented\n- Line 30: CTA says \"Start a conversation\" — marketing tone\n\nRewrite all text to be grounded in the resume:\n- Uppercase label: reflect actual resume categories or contract/freelance nature (e.g., \"Full-stack engineering, contract & freelance\")\n- Headline: factual, based on resume summary. Resume says: \"Software engineer with 13 years designing and delivering complete systems. I work across the full stack — architecture, backend, frontend, infrastructure — and focus on shipping software that solves the actual problem.\"\n- Description: mention 13 years, breadth of stacks, contract/freelance nature, 80+ projects\n- Skill tags: use resume Skills section candidates — \"End-to-End Delivery\", \"Agentic Development\", \"Product-Oriented\", or factual tags like \"10+ languages\", \"Contract & remote\"\n- CTA buttons: simplify text (e.g., \"Email me\" / \"Resume (PDF)\")\n\nKeep the visual structure, classes, and layout unchanged. Only change text content.",
+      "description": "As a visitor, I want the hero to state what Andrei does factually, without marketing language.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex` (lines 1-39)\n\nCurrent problems:\n- Line 4-6: Uppercase label says \"Systems, product, and delivery\" — not grounded in resume\n- Line 7-9: Headline says \"I help teams ship complex platforms and make the real work visible\" — marketing copy, not factual\n- Line 10-13: Description claims \"specialize in multi-tenant SaaS, legacy modernization, and AI-assisted delivery\" — overclaims\n- Line 15-24: Skill tags say \"System architecture\", \"Full-stack delivery\", \"AI-accelerated teams\" — partially invented\n- Line 30: CTA says \"Start a conversation\" — marketing tone\n\nRewrite all text to be grounded in the resume:\n- Uppercase label: reflect actual resume categories or contract/freelance nature (e.g., \"Full-stack engineering, contract \u0026 freelance\")\n- Headline: factual, based on resume summary. Resume says: \"Software engineer with 13 years designing and delivering complete systems. I work across the full stack — architecture, backend, frontend, infrastructure — and focus on shipping software that solves the actual problem.\"\n- Description: mention 13 years, breadth of stacks, contract/freelance nature, 80+ projects\n- Skill tags: use resume Skills section candidates — \"End-to-End Delivery\", \"Agentic Development\", \"Product-Oriented\", or factual tags like \"10+ languages\", \"Contract \u0026 remote\"\n- CTA buttons: simplify text (e.g., \"Email me\" / \"Resume (PDF)\")\n\nKeep the visual structure, classes, and layout unchanged. Only change text content.",
       "acceptanceCriteria": [
         "Uppercase label is replaced with a resume-grounded descriptor (no marketing language)",
         "Headline is factual and derived from the resume summary — no invented claims like \"make the real work visible\"",
@@ -49,7 +67,9 @@
         "Visual structure and Tailwind classes are preserved",
         "Typecheck passes"
       ],
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "priority": 2,
       "passes": false,
       "retries": 0,
@@ -57,31 +77,52 @@
       "lastResult": null,
       "notes": "",
       "browserSteps": [
-        {"action": "navigate", "url": "/"},
-        {"action": "assertText", "selector": "section", "contains": "13 years"},
-        {"action": "assertText", "selector": "section", "contains": "80+"},
-        {"action": "assertVisible", "selector": "a[href='mailto:mail@scripness.com']"},
-        {"action": "assertVisible", "selector": "a[href*='Andrei%20Scripcaru']"},
-        {"action": "screenshot"}
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "section",
+          "contains": "13 years"
+        },
+        {
+          "action": "assertText",
+          "selector": "section",
+          "contains": "80+"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "a[href='mailto:mail@scripness.com']"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "a[href*='Andrei%20Scripcaru']"
+        },
+        {
+          "action": "screenshot"
+        }
       ]
     },
     {
       "id": "US-003",
       "title": "Build featured projects tier",
-      "description": "As a visitor, I want to see the most substantive projects with full detail, so I can understand the depth of Andrei's work.\n\nThis replaces the current \"Proof of impact\" card (the `<div>` at lines 42-63 of `home.html.heex`) with a new projects section containing featured project cards.\n\nCreate a NEW section after the hero grid (after the closing `</section>` at line 76) with:\n- A factual heading (e.g., \"Work\" or \"Projects\") and a subtle count (\"14 engagements\")\n- 3-4 featured project cards using native `<details>` elements, selected by most resume bullet points\n\nFeatured project data (from resume PDF):\n\n1. **FinancialDocs** — Full-Stack Engineer | Contract | Remote\n   - Maintained three legacy paystub platforms (thepaystubs.com, paystubs.net, paystubcreator.com) serving hundreds of users, evolving a shared codebase of 2,000+ service classes without breaking production\n   - Architected a legal document platform (legaldocs.com) — designed the CMS data model with 14 collections, built the document generation pipeline, and integrated dual payment providers\n   - Designed a webhook-based caching system with CDN integration to handle content updates across interconnected documents\n   - Delivered entirely using agentic AI workflows\n   - Tech: TypeScript, PHP, React/Next.js, NestJS, PayloadCMS, MongoDB, PostgreSQL\n\n2. **NIXAP** — Full-Stack Engineer | Contract | Hybrid\n   - Built custom web applications and internal tools for client projects\n   - Engineered a scalable multi-tenant VoIP system integrating PBX/SIP protocols with a desktop application for call management\n   - Developed with AI-assisted workflows\n   - Tech: TypeScript, PHP/Symfony/Laravel, Node.js, Vue.js/Nuxt.js, Electron, VoIP/SIP, RabbitMQ, Elasticsearch, WebSocket\n\n3. **Dispatch42** — Full-Stack Developer | Full-Time | In-Office\n   - Architected a real-time logistics CRM with microservices backend and mobile app\n   - Built serverless notifications system and integrated proprietary hardware data feeds\n   - Tech: TypeScript, Kotlin, React, GraphQL, Node.js, AWS (Lambda, SQS, DynamoDB, CDK), Jest\n\n4. **Travod** — Full-Stack Developer | Full-Time | In-Office (optional 4th featured card)\n   - Developed backend and frontend for Traduno, an in-house translation services CRM\n   - Led development of a GraphQL API layer over the existing Ruby backend\n   - Tech: Ruby/Rails, Vue/Nuxt, GraphQL, MySQL, RSpec\n\nCard design:\n- Each card is a `<details>` element that expands on click\n- Always visible (summary): Company name (serif heading), role title from resume, one-sentence summary\n- On expand: Full bullet points from resume (verbatim or faithful), tech stack as small rounded pills\n- Each featured card gets a subtle 2px top border accent using warm palette colors (`#7b4a2c`, `#a0826d`, `#c7b3a4`, `#d4a983`)\n- Card classes: `rounded-[28px] border border-white/30 bg-white/65 p-6 shadow-[0_20px_60px_rgba(28,17,12,0.12)]`\n- Tech pill classes: `rounded-full bg-[#1a0f09]/5 px-2.5 py-0.5 text-xs text-[#3b2b22]`\n- Section wrapper classes: `rounded-[32px] border border-white/30 bg-white/70 p-8 shadow-[0_30px_80px_rgba(28,17,12,0.12)]`\n\nAlso remove the old \"Proof of impact\" card content (lines 42-63) since it's replaced by this new section. Keep the right column `<div class=\"space-y-6\">` wrapper but remove the proof-of-impact card from it — the dark card (lines 65-74) stays for now (US-006 will handle it later).",
+      "description": "As a visitor, I want to see the most substantive projects with full detail, so I can understand the depth of Andrei's work.\n\nThis replaces the current \"Proof of impact\" card (the `\u003cdiv\u003e` at lines 42-63 of `home.html.heex`) with a new projects section containing featured project cards.\n\nCreate a NEW section after the hero grid (after the closing `\u003c/section\u003e` at line 76) with:\n- A factual heading (e.g., \"Work\" or \"Projects\") and a subtle count (\"14 engagements\")\n- 3-4 featured project cards using native `\u003cdetails\u003e` elements, selected by most resume bullet points\n\nFeatured project data (from resume PDF):\n\n1. **FinancialDocs** — Full-Stack Engineer | Contract | Remote\n   - Maintained three legacy paystub platforms (thepaystubs.com, paystubs.net, paystubcreator.com) serving hundreds of users, evolving a shared codebase of 2,000+ service classes without breaking production\n   - Architected a legal document platform (legaldocs.com) — designed the CMS data model with 14 collections, built the document generation pipeline, and integrated dual payment providers\n   - Designed a webhook-based caching system with CDN integration to handle content updates across interconnected documents\n   - Delivered entirely using agentic AI workflows\n   - Tech: TypeScript, PHP, React/Next.js, NestJS, PayloadCMS, MongoDB, PostgreSQL\n\n2. **NIXAP** — Full-Stack Engineer | Contract | Hybrid\n   - Built custom web applications and internal tools for client projects\n   - Engineered a scalable multi-tenant VoIP system integrating PBX/SIP protocols with a desktop application for call management\n   - Developed with AI-assisted workflows\n   - Tech: TypeScript, PHP/Symfony/Laravel, Node.js, Vue.js/Nuxt.js, Electron, VoIP/SIP, RabbitMQ, Elasticsearch, WebSocket\n\n3. **Dispatch42** — Full-Stack Developer | Full-Time | In-Office\n   - Architected a real-time logistics CRM with microservices backend and mobile app\n   - Built serverless notifications system and integrated proprietary hardware data feeds\n   - Tech: TypeScript, Kotlin, React, GraphQL, Node.js, AWS (Lambda, SQS, DynamoDB, CDK), Jest\n\n4. **Travod** — Full-Stack Developer | Full-Time | In-Office (optional 4th featured card)\n   - Developed backend and frontend for Traduno, an in-house translation services CRM\n   - Led development of a GraphQL API layer over the existing Ruby backend\n   - Tech: Ruby/Rails, Vue/Nuxt, GraphQL, MySQL, RSpec\n\nCard design:\n- Each card is a `\u003cdetails\u003e` element that expands on click\n- Always visible (summary): Company name (serif heading), role title from resume, one-sentence summary\n- On expand: Full bullet points from resume (verbatim or faithful), tech stack as small rounded pills\n- Each featured card gets a subtle 2px top border accent using warm palette colors (`#7b4a2c`, `#a0826d`, `#c7b3a4`, `#d4a983`)\n- Card classes: `rounded-[28px] border border-white/30 bg-white/65 p-6 shadow-[0_20px_60px_rgba(28,17,12,0.12)]`\n- Tech pill classes: `rounded-full bg-[#1a0f09]/5 px-2.5 py-0.5 text-xs text-[#3b2b22]`\n- Section wrapper classes: `rounded-[32px] border border-white/30 bg-white/70 p-8 shadow-[0_30px_80px_rgba(28,17,12,0.12)]`\n\nAlso remove the old \"Proof of impact\" card content (lines 42-63) since it's replaced by this new section. Keep the right column `\u003cdiv class=\"space-y-6\"\u003e` wrapper but remove the proof-of-impact card from it — the dark card (lines 65-74) stays for now (US-006 will handle it later).",
       "acceptanceCriteria": [
         "New projects section exists with a factual heading (no marketing language) and a count like '14 engagements'",
         "3-4 featured cards present for the projects with the most resume bullets (FinancialDocs, NIXAP, Dispatch42, optionally Travod)",
         "Each card shows company name, role title (from resume), and one-sentence summary in the always-visible summary",
-        "Each card expands via native <details> to show full resume bullet points and tech stack pills",
+        "Each card expands via native \u003cdetails\u003e to show full resume bullet points and tech stack pills",
         "Each featured card has a subtle warm-colored 2px top border accent (different color per card)",
         "All text matches the resume — no embellishments or invented claims",
         "Old 'Proof of impact' card content is removed",
         "Cards stack vertically on mobile, responsive layout",
-        "No JavaScript used — native <details> only",
+        "No JavaScript used — native \u003cdetails\u003e only",
         "Typecheck passes"
       ],
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "priority": 3,
       "passes": false,
       "retries": 0,
@@ -89,29 +130,54 @@
       "lastResult": null,
       "notes": "",
       "browserSteps": [
-        {"action": "navigate", "url": "/"},
-        {"action": "assertVisible", "selector": "details"},
-        {"action": "assertText", "selector": "main", "contains": "FinancialDocs"},
-        {"action": "assertText", "selector": "main", "contains": "NIXAP"},
-        {"action": "assertText", "selector": "main", "contains": "Dispatch42"},
-        {"action": "click", "selector": "details summary"},
-        {"action": "screenshot"}
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "details"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "FinancialDocs"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "NIXAP"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Dispatch42"
+        },
+        {
+          "action": "click",
+          "selector": "details summary"
+        },
+        {
+          "action": "screenshot"
+        }
       ]
     },
     {
       "id": "US-004",
       "title": "Build compact projects tier",
-      "description": "As a visitor, I want to see all remaining projects in a compact, browsable format so I can understand the breadth of Andrei's experience.\n\nThis is the second tier below the featured projects created in US-003. It shows the remaining projects in a denser layout within the same projects section.\n\nAdd a subtle label (e.g., \"More work\" in small uppercase tracking) and compact expandable cards for each remaining project.\n\nCompact project data (from resume PDF — exclude any that were placed in the featured tier):\n\n1. **Rio** — Full-Stack Engineer | Contract | Remote\n   - Developed backend services (Kotlin, Node.js) and frontend features for a live-streaming platform\n   - Tech: Kotlin, NestJS, Node.js, Vue/Nuxt, TypeScript, PostgreSQL\n\n2. **Crawless** — Full-Stack Developer | Contract | Remote\n   - Built backend systems and internal CRM for an Electron-based browser automation IDE\n   - Tech: TypeScript, Vue.js, Electron, PostgreSQL, MongoDB, REST, Jest\n\n3. **Deditech Com** — Full-Stack Developer | Contract | Remote\n   - Led development of a B2B CRM and a home rental platform from scratch\n   - Tech: PHP/Laravel, Vue/Nuxt, TypeScript, MySQL\n\n4. **eToro** — Back-End Developer | Contract | Remote\n   - Led backend API development for a mobile application serving job seekers and recruiters\n   - Tech: PHP/Laravel, MySQL, REST, Pest\n\n5. **MKM** — Full-Stack Developer | Contract | Remote\n   - Developed a UK e-commerce platform integrating headless CRM and payment APIs\n   - Tech: PHP/Laravel, Vue/Nuxt, TypeScript, MySQL, Cypress\n\n6. **GoodLeap** — Back-End Developer | Contract | Remote\n   - Built and maintained serverless microservices for a large-scale solar financing platform, integrating DocuSign and payment workflows\n   - Tech: Node.js, TypeScript, AWS (Lambda, SQS, S3), REST, Jest\n\n7. **RentInsider** — Front-End Developer | Contract | Remote\n   - Led frontend development from scratch for a Romanian/European rental platform, integrating with a Python backend\n   - Tech: TypeScript, React/Next.js, ChakraUI, REST, Cypress\n\n8. **Virail** — Full-Stack Developer | Contract | Remote\n   - Developed backend and frontend features for a high-traffic travel search engine, integrating Elasticsearch for performance\n   - Tech: PHP/Phalcon, Vue, Elasticsearch, REST, Cypress\n\n9. **Deutsche Fintech Solutions** — Front-End Developer | Contract | Remote\n   - Led frontend development and transition to micro-frontend architecture for B2C/B2B financial apps\n   - Tech: TypeScript, React/Next.js, Svelte, GraphQL, Luigi/Micro-frontends, Cypress\n\n10. **Travod** — Full-Stack Developer | Full-Time | In-Office (only if NOT in featured tier)\n    - Developed backend and frontend for Traduno, an in-house translation services CRM\n    - Led development of a GraphQL API layer over the existing Ruby backend\n    - Tech: Ruby/Rails, Vue/Nuxt, GraphQL, MySQL, RSpec\n\nCompact card design:\n- Each is a `<details>` element\n- Always visible (summary): Company name (semibold), one-line description\n- On expand: Full bullet point(s) from resume + tech stack pills\n- No employment type tags — keep minimal\n- Card classes: `rounded-2xl border border-[#e0d2c4] bg-white/70 p-4`\n- Responsive grid: 2 columns on md+, single column on mobile (`grid gap-4 md:grid-cols-2`)",
+      "description": "As a visitor, I want to see all remaining projects in a compact, browsable format so I can understand the breadth of Andrei's experience.\n\nThis is the second tier below the featured projects created in US-003. It shows the remaining projects in a denser layout within the same projects section.\n\nAdd a subtle label (e.g., \"More work\" in small uppercase tracking) and compact expandable cards for each remaining project.\n\nCompact project data (from resume PDF — exclude any that were placed in the featured tier):\n\n1. **Rio** — Full-Stack Engineer | Contract | Remote\n   - Developed backend services (Kotlin, Node.js) and frontend features for a live-streaming platform\n   - Tech: Kotlin, NestJS, Node.js, Vue/Nuxt, TypeScript, PostgreSQL\n\n2. **Crawless** — Full-Stack Developer | Contract | Remote\n   - Built backend systems and internal CRM for an Electron-based browser automation IDE\n   - Tech: TypeScript, Vue.js, Electron, PostgreSQL, MongoDB, REST, Jest\n\n3. **Deditech Com** — Full-Stack Developer | Contract | Remote\n   - Led development of a B2B CRM and a home rental platform from scratch\n   - Tech: PHP/Laravel, Vue/Nuxt, TypeScript, MySQL\n\n4. **eToro** — Back-End Developer | Contract | Remote\n   - Led backend API development for a mobile application serving job seekers and recruiters\n   - Tech: PHP/Laravel, MySQL, REST, Pest\n\n5. **MKM** — Full-Stack Developer | Contract | Remote\n   - Developed a UK e-commerce platform integrating headless CRM and payment APIs\n   - Tech: PHP/Laravel, Vue/Nuxt, TypeScript, MySQL, Cypress\n\n6. **GoodLeap** — Back-End Developer | Contract | Remote\n   - Built and maintained serverless microservices for a large-scale solar financing platform, integrating DocuSign and payment workflows\n   - Tech: Node.js, TypeScript, AWS (Lambda, SQS, S3), REST, Jest\n\n7. **RentInsider** — Front-End Developer | Contract | Remote\n   - Led frontend development from scratch for a Romanian/European rental platform, integrating with a Python backend\n   - Tech: TypeScript, React/Next.js, ChakraUI, REST, Cypress\n\n8. **Virail** — Full-Stack Developer | Contract | Remote\n   - Developed backend and frontend features for a high-traffic travel search engine, integrating Elasticsearch for performance\n   - Tech: PHP/Phalcon, Vue, Elasticsearch, REST, Cypress\n\n9. **Deutsche Fintech Solutions** — Front-End Developer | Contract | Remote\n   - Led frontend development and transition to micro-frontend architecture for B2C/B2B financial apps\n   - Tech: TypeScript, React/Next.js, Svelte, GraphQL, Luigi/Micro-frontends, Cypress\n\n10. **Travod** — Full-Stack Developer | Full-Time | In-Office (only if NOT in featured tier)\n    - Developed backend and frontend for Traduno, an in-house translation services CRM\n    - Led development of a GraphQL API layer over the existing Ruby backend\n    - Tech: Ruby/Rails, Vue/Nuxt, GraphQL, MySQL, RSpec\n\nCompact card design:\n- Each is a `\u003cdetails\u003e` element\n- Always visible (summary): Company name (semibold), one-line description\n- On expand: Full bullet point(s) from resume + tech stack pills\n- No employment type tags — keep minimal\n- Card classes: `rounded-2xl border border-[#e0d2c4] bg-white/70 p-4`\n- Responsive grid: 2 columns on md+, single column on mobile (`grid gap-4 md:grid-cols-2`)",
       "acceptanceCriteria": [
         "All remaining projects from the resume (not in featured tier) are included as compact cards",
         "Each compact card shows company name and one-line description in the always-visible summary",
-        "Each compact card expands via native <details> to show full resume bullet point(s) and tech stack pills",
+        "Each compact card expands via native \u003cdetails\u003e to show full resume bullet point(s) and tech stack pills",
         "All text matches the resume — no embellishments",
         "Responsive grid: 2 columns on md+, single column on mobile",
-        "Uses native <details> elements (no JavaScript)",
+        "Uses native \u003cdetails\u003e elements (no JavaScript)",
         "Typecheck passes"
       ],
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "priority": 4,
       "passes": false,
       "retries": 0,
@@ -119,12 +185,33 @@
       "lastResult": null,
       "notes": "",
       "browserSteps": [
-        {"action": "navigate", "url": "/"},
-        {"action": "assertText", "selector": "main", "contains": "Rio"},
-        {"action": "assertText", "selector": "main", "contains": "GoodLeap"},
-        {"action": "assertText", "selector": "main", "contains": "Virail"},
-        {"action": "assertText", "selector": "main", "contains": "Deutsche Fintech"},
-        {"action": "screenshot"}
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Rio"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "GoodLeap"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Virail"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Deutsche Fintech"
+        },
+        {
+          "action": "screenshot"
+        }
       ]
     },
     {
@@ -139,7 +226,9 @@
         "Card is NOT expandable — all content always visible",
         "Typecheck passes"
       ],
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "priority": 5,
       "passes": false,
       "retries": 0,
@@ -147,10 +236,23 @@
       "lastResult": null,
       "notes": "",
       "browserSteps": [
-        {"action": "navigate", "url": "/"},
-        {"action": "assertText", "selector": "main", "contains": "80+"},
-        {"action": "assertText", "selector": "main", "contains": "Independent Freelancing"},
-        {"action": "screenshot"}
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "80+"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Independent Freelancing"
+        },
+        {
+          "action": "screenshot"
+        }
       ]
     },
     {
@@ -166,7 +268,9 @@
         "Dark card visual style preserved (dark background, white text, rounded corners)",
         "Typecheck passes"
       ],
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "priority": 6,
       "passes": false,
       "retries": 0,
@@ -174,11 +278,28 @@
       "lastResult": null,
       "notes": "",
       "browserSteps": [
-        {"action": "navigate", "url": "/"},
-        {"action": "assertText", "selector": "main", "contains": "Free International University of Moldova"},
-        {"action": "assertText", "selector": "main", "contains": "English (C2)"},
-        {"action": "assertText", "selector": "main", "contains": "Romanian (Native)"},
-        {"action": "screenshot"}
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Free International University of Moldova"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "English (C2)"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Romanian (Native)"
+        },
+        {
+          "action": "screenshot"
+        }
       ]
     },
     {
@@ -195,7 +316,9 @@
         "Card styling preserved (rounded corners, warm borders, white backgrounds, 2-column grid on md+)",
         "Typecheck passes"
       ],
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "priority": 7,
       "passes": false,
       "retries": 0,
@@ -203,17 +326,26 @@
       "lastResult": null,
       "notes": "",
       "browserSteps": [
-        {"action": "navigate", "url": "/"},
-        {"action": "assertText", "selector": "main", "contains": "How I work"},
-        {"action": "screenshot"}
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "How I work"
+        },
+        {
+          "action": "screenshot"
+        }
       ]
     },
     {
       "id": "US-008",
       "title": "Rewrite Ask me about expandable section",
-      "description": "As a visitor, I want the expandable topics to cover things the resume actually supports.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex` — the \"Ask me about\" section (originally lines 105-149).\n\nReplace the 4 expandable topics with resume-grounded content:\n\n1. **Working across many stacks:** TypeScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi. Acknowledge depth varies (\"TypeScript and PHP are where I've spent the most time\"). No overclaiming.\n\n2. **80+ projects as a freelancer:** Use resume wording: \"Delivered 80+ projects across CRM, SaaS, and e-commerce — handling client requirements, architecture, implementation, and ongoing maintenance end-to-end.\"\n\n3. **Legacy codebases:** FinancialDocs: \"evolving a shared codebase of 2,000+ service classes without breaking production\" across three interconnected platforms.\n\n4. **Agentic AI development:** FinancialDocs and NIXAP both mention AI workflows. Frame as current practice. Be specific about what was delivered.\n\nRemove:\n- \"Cross-functional leadership\" — no resume support\n- \"Scaling real-time systems\" — one project doesn't make a specialty\n\nPreserve the `<details>` interactive pattern and card styling: `rounded-2xl border border-[#e0d2c4] bg-white/80 p-4` in a `grid gap-4 md:grid-cols-2` layout.\n\nEach expanded description should use resume wording or faithful summaries. Tone is minimal and factual.",
+      "description": "As a visitor, I want the expandable topics to cover things the resume actually supports.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex` — the \"Ask me about\" section (originally lines 105-149).\n\nReplace the 4 expandable topics with resume-grounded content:\n\n1. **Working across many stacks:** TypeScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi. Acknowledge depth varies (\"TypeScript and PHP are where I've spent the most time\"). No overclaiming.\n\n2. **80+ projects as a freelancer:** Use resume wording: \"Delivered 80+ projects across CRM, SaaS, and e-commerce — handling client requirements, architecture, implementation, and ongoing maintenance end-to-end.\"\n\n3. **Legacy codebases:** FinancialDocs: \"evolving a shared codebase of 2,000+ service classes without breaking production\" across three interconnected platforms.\n\n4. **Agentic AI development:** FinancialDocs and NIXAP both mention AI workflows. Frame as current practice. Be specific about what was delivered.\n\nRemove:\n- \"Cross-functional leadership\" — no resume support\n- \"Scaling real-time systems\" — one project doesn't make a specialty\n\nPreserve the `\u003cdetails\u003e` interactive pattern and card styling: `rounded-2xl border border-[#e0d2c4] bg-white/80 p-4` in a `grid gap-4 md:grid-cols-2` layout.\n\nEach expanded description should use resume wording or faithful summaries. Tone is minimal and factual.",
       "acceptanceCriteria": [
-        "4 expandable <details> topics present, all grounded in resume content",
+        "4 expandable \u003cdetails\u003e topics present, all grounded in resume content",
         "Topic about stacks lists specific languages from resume and acknowledges varying depth",
         "Topic about freelancing uses resume wording about 80+ projects",
         "Topic about legacy codebases references FinancialDocs and the 2,000+ service classes",
@@ -221,10 +353,12 @@
         "'Cross-functional leadership' topic is removed",
         "'Scaling real-time systems' topic is removed",
         "Each expanded description uses resume wording or faithful summaries",
-        "The <details> interactive pattern is preserved",
+        "The \u003cdetails\u003e interactive pattern is preserved",
         "Typecheck passes"
       ],
-      "tags": ["ui"],
+      "tags": [
+        "ui"
+      ],
       "priority": 8,
       "passes": false,
       "retries": 0,
