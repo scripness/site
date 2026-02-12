@@ -402,4 +402,71 @@ defmodule ScripnessWeb.PageControllerTest do
     refute body =~ "Deliver end-to-end"
     refute body =~ "Document the story"
   end
+
+  test "ask me about section has 4 expandable topics", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Ask me about"
+    assert body =~ "Working across many stacks"
+    assert body =~ "80+ projects as a freelancer"
+    assert body =~ "Legacy codebases"
+    assert body =~ "Agentic AI development"
+  end
+
+  test "ask me about stacks topic lists specific languages and acknowledges varying depth",
+       %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "TypeScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi"
+    assert body =~ "TypeScript and PHP are where I"
+    assert body =~ "Depth varies"
+  end
+
+  test "ask me about freelancing topic uses resume wording", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "80+ projects across CRM, SaaS, and e-commerce"
+
+    assert body =~
+             "client requirements, architecture, implementation, and ongoing maintenance end-to-end"
+  end
+
+  test "ask me about legacy codebases references FinancialDocs and 2000+ service classes",
+       %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "FinancialDocs"
+    assert body =~ "2,000+ service classes"
+    assert body =~ "three interconnected"
+  end
+
+  test "ask me about AI development references FinancialDocs and NIXAP", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "FinancialDocs"
+    assert body =~ "NIXAP"
+    assert body =~ "agentic AI workflows"
+    assert body =~ "AI-assisted workflows"
+  end
+
+  test "ask me about removed unsupported topics", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    refute body =~ "Cross-functional leadership"
+    refute body =~ "Scaling real-time systems"
+  end
+
+  test "ask me about preserves details interactive pattern and card styling", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "rounded-2xl border border-[#e0d2c4] bg-white/80 p-4"
+    assert body =~ "grid gap-4 md:grid-cols-2"
+  end
 end
