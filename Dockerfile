@@ -1,5 +1,5 @@
 # Build stage
-FROM hexpm/elixir:1.15-erlang-26.2-debian-bullseye-20240201 AS build
+FROM elixir:1.15.7-otp-26 AS build
 
 RUN apt-get update -y && apt-get install -y build-essential git && rm -rf /var/lib/apt/lists/*
 
