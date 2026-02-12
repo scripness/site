@@ -337,4 +337,69 @@ defmodule ScripnessWeb.PageControllerTest do
     # Verify that "Independent Freelancing" is not inside a <summary> tag
     refute body =~ "<summary" <> ~s( ) <> "Independent Freelancing"
   end
+
+  test "how I work section has factual subtitle", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "How I work"
+    assert body =~ "13 years of contract and freelance engineering"
+    refute body =~ "Clear expectations, fast feedback loops"
+    refute body =~ "bias for shipping"
+  end
+
+  test "how I work has ramp-up card with resume facts", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Ramps up fast"
+    assert body =~ "80+ projects across different stacks and domains"
+    assert body =~ "TypeScript, PHP, Ruby, Python, Kotlin"
+  end
+
+  test "how I work has full-stack ownership card", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Full-stack ownership"
+    assert body =~ "Backend, frontend, infrastructure, and deployment"
+    assert body =~ "Not just one layer"
+  end
+
+  test "how I work has remote and async card with resume facts", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Remote and async"
+    assert body =~ "2 of 14 company roles were in-office"
+    assert body =~ "13 years of remote contract work"
+  end
+
+  test "how I work has AI-assisted workflows card referencing resume projects", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "AI-assisted workflows"
+    assert body =~ "FinancialDocs"
+    assert body =~ "NIXAP"
+    assert body =~ "agentic AI workflows"
+  end
+
+  test "how I work cards use correct styling", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "rounded-2xl border border-[#e0d2c4] bg-white/70 p-4"
+    assert body =~ "grid gap-4 md:grid-cols-2"
+  end
+
+  test "how I work has no invented process claims", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    refute body =~ "Discover the real constraint"
+    refute body =~ "Architect for reality"
+    refute body =~ "Deliver end-to-end"
+    refute body =~ "Document the story"
+  end
 end
