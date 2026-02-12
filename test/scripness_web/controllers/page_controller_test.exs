@@ -222,4 +222,71 @@ defmodule ScripnessWeb.PageControllerTest do
     # Just verify the compact-specific card classes exist
     assert body =~ "rounded-2xl border border-[#e0d2c4] bg-white/70 p-4"
   end
+
+  test "freelance aggregate card has dark styling and headline", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Independent Freelancing"
+    assert body =~ "bg-[#1a0f09]/90"
+    assert body =~ "border-white/10"
+  end
+
+  test "freelance aggregate card contains resume bullet points", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # First bullet: "80+" is in a prominent span, rest follows
+    assert body =~ "80+"
+    assert body =~ "projects across CRM, SaaS, and e-commerce"
+    assert body =~ "architecture, implementation, and ongoing maintenance end-to-end"
+
+    # Second bullet
+    assert body =~ "web, desktop, and mobile stacks"
+    assert body =~ "direct client interaction"
+  end
+
+  test "freelance aggregate card has prominent 80+ text", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # "80+" should be in a larger, bold span
+    assert body =~ "text-2xl font-bold"
+    assert body =~ ">80+<"
+  end
+
+  test "freelance aggregate card has all 12 tech stack pills", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "PHP"
+    assert body =~ "JavaScript/TypeScript"
+    assert body =~ "Python"
+    assert body =~ "Vue.js"
+    assert body =~ "React"
+    assert body =~ "Node.js"
+    assert body =~ "MySQL"
+    assert body =~ "PostgreSQL"
+    assert body =~ "DynamoDB"
+    assert body =~ "Flutter"
+    assert body =~ "Delphi"
+  end
+
+  test "freelance aggregate card tech pills use dark style", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "border-white/20"
+    assert body =~ "text-white/70"
+  end
+
+  test "freelance aggregate card is not expandable", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # The freelance card should NOT be inside a details element
+    # It should be a plain div, not expandable
+    # Verify that "Independent Freelancing" is not inside a <summary> tag
+    refute body =~ "<summary" <> ~s( ) <> "Independent Freelancing"
+  end
 end
