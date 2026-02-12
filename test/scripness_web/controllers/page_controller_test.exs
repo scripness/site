@@ -61,6 +61,54 @@ defmodule ScripnessWeb.PageControllerTest do
     refute body =~ "Start a conversation"
   end
 
+  test "background card contains education from resume", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Free International University of Moldova"
+    assert body =~ "Information Technology"
+  end
+
+  test "background card contains languages from resume", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "English (C2)"
+    assert body =~ "Romanian (Native)"
+    assert body =~ "Russian (Native)"
+  end
+
+  test "background card mentions Moldova as location", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Moldova"
+  end
+
+  test "background card mentions contract/remote work style", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Mostly contract, mostly remote"
+  end
+
+  test "background card has dark styling and no fabricated roles content", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    # Dark card styling preserved
+    assert body =~ "bg-[#1a0f09]/90"
+    assert body =~ "text-white"
+
+    # Old fabricated content removed
+    refute body =~ "Roles I&#39;m best for"
+    refute body =~ "Roles I&#39;m not best for"
+    refute body =~ "Roles I'm best for"
+    refute body =~ "Roles I'm not best for"
+    refute body =~ "Platform engineering, systems architecture"
+    refute body =~ "Consumer growth, mobile-first product"
+  end
+
   test "projects section has factual heading and engagement count", %{conn: conn} do
     conn = get(conn, ~p"/")
     body = html_response(conn, 200)
