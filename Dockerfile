@@ -17,6 +17,7 @@ RUN mix deps.compile
 COPY priv priv
 COPY lib lib
 COPY assets assets
+COPY rel rel
 
 RUN mix assets.deploy
 RUN mix compile
