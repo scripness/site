@@ -5,7 +5,7 @@
   "description": "Rewrite site content to be honest and grounded in the resume PDF as the single source of truth. Replace marketing copy with minimal, factual text. Add two-tier projects section with progressive disclosure.",
   "run": {
     "startedAt": "2026-02-12T23:28:12+02:00",
-    "currentStoryId": "US-001",
+    "currentStoryId": null,
     "learnings": [
       "HEEx templates render `\u0026` as literal `\u0026` in html_response (not `\u0026amp;`), so test assertions should match the un-encoded character or split the assertion to avoid the ampersand.",
       "The HEEx formatter auto-reformats inline `\u003cspan\u003e` content to multi-line when tags have long class lists — don't fight it, let `mix format` handle it.",
@@ -32,10 +32,10 @@
       ],
       "priority": 1,
       "passes": false,
-      "retries": 0,
+      "retries": 1,
       "blocked": false,
       "lastResult": null,
-      "notes": "pre-verify failed: browser verification failed: step assertText failed: text 'Andrei Scripcaru' not found in element (got: 'ANDREI SCRIPCARU\n\nFull-stack software engineer\n\nmail@scripness.com\nDownload resume')",
+      "notes": "No commit made — provider signaled DONE without committing code",
       "browserSteps": [
         {
           "action": "navigate",
