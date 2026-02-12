@@ -18,13 +18,22 @@ Deliver a cozy, premium-feeling personal site that makes hiring managers want to
 - Use `<Layouts.flash_group>` only inside `layouts.ex`.
 - Use `<.icon>` from `core_components.ex` for icons.
 - Use `<.input>` for form fields when available.
+- If you override default `<.input>` classes, provide full styling (defaults are not preserved).
+- If you hit `current_scope` errors, move routes into the proper `live_session` and pass `current_scope` to `<Layouts.app>`.
 
 ## JS and CSS guidelines
 
-- Keep the Tailwind v4 import syntax in `assets/css/app.css`.
+- Keep the Tailwind v4 import syntax in `assets/css/app.css`:
+
+      @import "tailwindcss" source(none);
+      @source "../css";
+      @source "../js";
+      @source "../../lib/scripness_web";
+
 - Do not use `@apply`.
 - Avoid DaisyUI components; write custom Tailwind classes instead.
 - Do not add inline `<script>` tags to templates.
+- Only `app.js` and `app.css` bundles are supported; import vendor deps into those bundles.
 
 ## UI/UX guidelines
 

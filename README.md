@@ -31,3 +31,5 @@ Run `mix precommit` before shipping changes.
 2. `fly secrets set SECRET_KEY_BASE="$(mix phx.gen.secret)"`
 3. `fly secrets set PHX_HOST="scripness.fly.dev"`
 4. `fly deploy`
+
+If the app is cold-starting frequently, set `min_machines_running = 1` in `fly.toml`.
