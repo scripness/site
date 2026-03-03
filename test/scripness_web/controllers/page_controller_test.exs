@@ -43,11 +43,13 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "full stack"
 
     # Skill tags reflect resume content
+    assert body =~ "System Architecture &"
     assert body =~ "End-to-End Delivery"
+    assert body =~ "Technical Leadership"
     assert body =~ "Agentic Development"
-    assert body =~ "10+ languages"
+    assert body =~ "Product-Oriented"
+    assert body =~ "Clear Communication"
     refute body =~ "AI-accelerated teams"
-    refute body =~ "System architecture"
   end
 
   test "hero CTA buttons link to email and resume", %{conn: conn} do
@@ -419,7 +421,7 @@ defmodule ScripnessWeb.PageControllerTest do
     conn = get(conn, ~p"/")
     body = html_response(conn, 200)
 
-    assert body =~ "TypeScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi"
+    assert body =~ "TypeScript, JavaScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi"
     assert body =~ "TypeScript and PHP are where I"
     assert body =~ "Depth varies"
   end
@@ -468,5 +470,50 @@ defmodule ScripnessWeb.PageControllerTest do
 
     assert body =~ "rounded-2xl border border-[#e0d2c4] bg-white/80 p-4"
     assert body =~ "grid gap-4 md:grid-cols-2"
+  end
+
+  test "hero CTA row includes phone number", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "+373-78-181-261"
+    assert body =~ ~s(href="tel:+37378181261")
+  end
+
+  test "compact tier entries show role metadata", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Back-End Developer"
+    assert body =~ "Front-End Developer"
+  end
+
+  test "technical profile section has heading and all categories", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "Technical Profile"
+    assert body =~ "Languages"
+    assert body =~ "Frontend"
+    assert body =~ "Backend"
+    assert body =~ "Data"
+    assert body =~ "Cloud"
+    assert body =~ "APIs"
+    assert body =~ "Testing"
+    assert body =~ "Practices"
+  end
+
+  test "technical profile includes technologies previously absent from website", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    body = html_response(conn, 200)
+
+    assert body =~ "tRPC"
+    assert body =~ "OpenAPI"
+    assert body =~ "Playwright"
+    assert body =~ "Cucumber"
+    assert body =~ "Django/Flask"
+    assert body =~ "DDD"
+    assert body =~ "TDD/BDD-first"
+    assert body =~ "Redis"
   end
 end
