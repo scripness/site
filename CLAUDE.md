@@ -10,7 +10,8 @@ Deliver a cozy, premium-feeling personal site that makes hiring managers want to
 - Use `Req` for HTTP calls when needed (do not add `:httpoison`, `:tesla`, or `:httpc`).
 - Keep the home page content in `lib/scripness_web/controllers/page_html/home.html.heex`.
 - Keep the resume PDF in `priv/static/assets/Andrei Scripcaru - Technical.pdf` and link to it from the layout.
-- The deployed host is `scripness.fly.dev`; keep `PHX_HOST` aligned in Fly secrets.
+- The production domain is `scripness.com` (`scripness.fly.dev` also works); keep `PHX_HOST` aligned in Fly secrets.
+- Deploy with `fly deploy` from main. The app auto-stops when idle and auto-starts on request.
 
 ## Phoenix v1.8 guidelines
 
@@ -35,11 +36,25 @@ Deliver a cozy, premium-feeling personal site that makes hiring managers want to
 - Do not add inline `<script>` tags to templates.
 - Only `app.js` and `app.css` bundles are supported; import vendor deps into those bundles.
 
+## Home page structure
+
+The home page (`home.html.heex`) has this section order — preserve it:
+
+1. **Hero** — headline, description, 6 skill tags, CTA buttons (email, resume PDF, phone)
+2. **Background card** — education, languages, location, work style (dark card)
+3. **Projects** — 4 featured `<details>` cards + "More work" grid (9 compact `<details>` cards) + Independent Freelancing aggregate card
+4. **Technical Profile** — 8-category grid with brand-colored tech pills (40+ technologies)
+5. **How I work** — 4 cards: ramps up fast, full-stack ownership, remote/async, AI-assisted
+6. **Ask me about** — 4 expandable `<details>` topics
+
+All content is grounded in the resume PDF — do not fabricate claims or add unsupported details.
+
 ## UI/UX guidelines
 
 - Preserve the cozy tone: warm gradients, soft shadows, serif headings, and calm spacing.
 - Prefer subtle hover lifts and shadow transitions.
 - Keep layout intentional and readable on mobile.
+- Tech pills in Technical Profile use `border-l-2 border-l-[#BRAND_COLOR]` for visual identity; Practices category uses plain pills (no brand colors).
 
 
 <!-- usage-rules-start -->

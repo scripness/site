@@ -1,6 +1,6 @@
 # Scripness Site
 
-Personal website for Andrei Scripcaru (Phoenix + Tailwind). The homepage is crafted to make the work legible for hiring managers with proof blocks, fit notes, and a clear resume download.
+Personal website for Andrei Scripcaru (Phoenix + Tailwind). The homepage showcases 13 years of contract/freelance engineering through project cards, a Technical Profile with 40+ technologies, and resume-grounded "How I work" and "Ask me about" sections.
 
 ## Stack
 
@@ -29,7 +29,7 @@ Run `mix precommit` before shipping changes.
 
 1. `fly launch` (first time)
 2. `fly secrets set SECRET_KEY_BASE="$(mix phx.gen.secret)"`
-3. `fly secrets set PHX_HOST="scripness.fly.dev"`
+3. `fly secrets set PHX_HOST="scripness.com"`
 4. `fly deploy`
 
-If the app is cold-starting frequently, set `min_machines_running = 1` in `fly.toml`.
+The app auto-stops when idle and auto-starts on request (`auto_stop_machines = 'stop'`). Set `min_machines_running = 1` in `fly.toml` to avoid cold starts.
