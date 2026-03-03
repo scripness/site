@@ -53,7 +53,7 @@ defmodule ScripnessWeb.Layouts do
             <div class="h-10 w-10 rounded-full border border-white/30 bg-white/10"></div>
             <div>
               <p class="text-sm uppercase tracking-[0.3em]">Andrei Scripcaru</p>
-              <p class="text-xs text-white/70">Staff-level full-stack engineer</p>
+              <p class="text-xs text-white/70">Full-stack software engineer</p>
             </div>
           </div>
           <div class="flex items-center gap-3 text-sm text-white/80">

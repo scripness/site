@@ -1,0 +1,26 @@
+{
+  "maxRetries": 3,
+  "provider": {
+    "command": "claude",
+    "timeout": 1800
+  },
+  "verify": {
+    "default": ["mix test"],
+    "ui": ["mix test"]
+  },
+  "services": [
+    {
+      "name": "dev",
+      "start": "mix setup && mix phx.server",
+      "ready": "http://localhost:4000"
+    }
+  ],
+  "browser": {
+    "enabled": true,
+    "headless": true,
+    "screenshotDir": ".ralph/screenshots"
+  },
+  "commits": {
+    "prdChanges": true
+  }
+}

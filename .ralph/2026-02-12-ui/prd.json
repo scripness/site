@@ -1,0 +1,410 @@
+{
+  "schemaVersion": 2,
+  "project": "ui",
+  "branchName": "ralph/ui",
+  "description": "Rewrite site content to be honest and grounded in the resume PDF as the single source of truth. Replace marketing copy with minimal, factual text. Add two-tier projects section with progressive disclosure.",
+  "run": {
+    "startedAt": "2026-02-12T23:28:12+02:00",
+    "currentStoryId": null,
+    "learnings": [
+      "HEEx templates render `\u0026` as literal `\u0026` in html_response (not `\u0026amp;`), so test assertions should match the un-encoded character or split the assertion to avoid the ampersand.",
+      "The HEEx formatter auto-reformats inline `\u003cspan\u003e` content to multi-line when tags have long class lists — don't fight it, let `mix format` handle it.",
+      "Compact project cards use simpler styling than featured cards: `rounded-2xl border border-[#e0d2c4] bg-white/70 p-4` vs featured's `rounded-[28px] border border-white/30 border-t-2 ... bg-white/65 p-6 shadow-...`. Both tiers live within the same Projects `\u003csection\u003e`.",
+      "The freelance aggregate card uses dark styling (bg-[#1a0f09]/90, border-white/10, text-white) matching the \"Roles I'm best for\" card at the top. It sits as the last element inside the Projects section, after the compact tier grid. Tech pills use border-white/20 and text-white/70 for the dark-on-dark style.",
+      "HEEx templates render \u0026 as literal \u0026 in html_response (not \u0026amp;), so test assertions should match the un-encoded character",
+      "Browser text assertions on elements with CSS text-transform (e.g., `uppercase` class) will see the transformed text (\"ANDREI SCRIPCARU\"), not the source text (\"Andrei Scripcaru\"). Use case-insensitive matching or match against the CSS-transformed form in browser tests.",
+      "HEEx templates render \u0026 as literal \u0026 in html_response (not \u0026amp;), so test assertions should match the un-encoded character or split the assertion to avoid the ampersand.",
+      "When counting \"engagements\" for the projects section, count all named company entries plus Independent Freelancing as distinct entries (14 total in this resume).",
+      "Browser text assertions on elements with CSS text-transform (e.g., uppercase class) will see the transformed text, not the source text. Use case-insensitive matching or match against the CSS-transformed form in browser tests.",
+      "The \"14 engagements\" count in the projects section includes 4 featured + 9 compact + 1 Independent Freelancing = 14 total.",
+      "Featured project cards use different warm border-t colors for visual distinction: #7b4a2c, #a0826d, #c7b3a4, #d4a983."
+    ]
+  },
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Rewrite the layout header text",
+      "description": "As a visitor, I want the header to introduce Andrei with an accurate, minimal subtitle.\n\nThe header is in `lib/scripness_web/components/layouts.ex` in the `app/1` function (lines 50-74). The subtitle on line 56 currently says \"Staff-level full-stack engineer\" — the resume never uses \"Staff-level.\" The resume uses titles like \"Full-Stack Engineer\", \"Full-Stack Developer\", \"Back-End Developer\", \"Front-End Developer.\" The summary says: \"Software engineer with 13 years designing and delivering complete systems.\"\n\nChange the subtitle to a factual description grounded in the resume (e.g., \"Full-stack software engineer\" or \"Software engineer, 13 years\"). Keep the name \"Andrei Scripcaru\" and all header links (email, resume download) unchanged.",
+      "acceptanceCriteria": [
+        "Header name stays \"Andrei Scripcaru\" (line 55 of layouts.ex)",
+        "Subtitle no longer says \"Staff-level\" — replaced with a factual description from the resume (e.g., \"Full-stack software engineer\")",
+        "Header links (email mailto:mail@scripness.com and resume PDF download) remain unchanged",
+        "Typecheck passes (mix compile --warnings-as-errors)",
+        "Tests pass (mix test)"
+      ],
+      "tags": [
+        "ui"
+      ],
+      "priority": 1,
+      "passes": false,
+      "retries": 3,
+      "blocked": true,
+      "lastResult": null,
+      "notes": "No commit made — provider signaled DONE without committing code",
+      "browserSteps": [
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "header",
+          "contains": "Andrei Scripcaru"
+        },
+        {
+          "action": "assertText",
+          "selector": "header a[href='mailto:mail@scripness.com']",
+          "contains": "mail@scripness.com"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "header a[href*='Andrei%20Scripcaru']"
+        },
+        {
+          "action": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "US-002",
+      "title": "Rewrite the hero section",
+      "description": "As a visitor, I want the hero to state what Andrei does factually, without marketing language.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex` (lines 1-39)\n\nCurrent problems:\n- Line 4-6: Uppercase label says \"Systems, product, and delivery\" — not grounded in resume\n- Line 7-9: Headline says \"I help teams ship complex platforms and make the real work visible\" — marketing copy, not factual\n- Line 10-13: Description claims \"specialize in multi-tenant SaaS, legacy modernization, and AI-assisted delivery\" — overclaims\n- Line 15-24: Skill tags say \"System architecture\", \"Full-stack delivery\", \"AI-accelerated teams\" — partially invented\n- Line 30: CTA says \"Start a conversation\" — marketing tone\n\nRewrite all text to be grounded in the resume:\n- Uppercase label: reflect actual resume categories or contract/freelance nature (e.g., \"Full-stack engineering, contract \u0026 freelance\")\n- Headline: factual, based on resume summary. Resume says: \"Software engineer with 13 years designing and delivering complete systems. I work across the full stack — architecture, backend, frontend, infrastructure — and focus on shipping software that solves the actual problem.\"\n- Description: mention 13 years, breadth of stacks, contract/freelance nature, 80+ projects\n- Skill tags: use resume Skills section candidates — \"End-to-End Delivery\", \"Agentic Development\", \"Product-Oriented\", or factual tags like \"10+ languages\", \"Contract \u0026 remote\"\n- CTA buttons: simplify text (e.g., \"Email me\" / \"Resume (PDF)\")\n\nKeep the visual structure, classes, and layout unchanged. Only change text content.",
+      "acceptanceCriteria": [
+        "Uppercase label is replaced with a resume-grounded descriptor (no marketing language)",
+        "Headline is factual and derived from the resume summary — no invented claims like \"make the real work visible\"",
+        "Description paragraph mentions: 13 years, breadth of stacks, contract/freelance nature, and 80+ projects",
+        "Skill tags reflect resume content (from Skills section or factual descriptors) — no invented categories",
+        "CTA buttons still link to mailto:mail@scripness.com and the resume PDF — button text is simplified",
+        "No text claims anything the resume doesn't support",
+        "Visual structure and Tailwind classes are preserved",
+        "Typecheck passes"
+      ],
+      "tags": [
+        "ui"
+      ],
+      "priority": 2,
+      "passes": true,
+      "retries": 0,
+      "blocked": false,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:31:45+02:00",
+        "commit": "852c387",
+        "summary": "feat: US-002 - Rewrite the hero section"
+      },
+      "notes": "",
+      "browserSteps": [
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "section",
+          "contains": "13 years"
+        },
+        {
+          "action": "assertText",
+          "selector": "section",
+          "contains": "80+"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "a[href='mailto:mail@scripness.com']"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "a[href*='Andrei%20Scripcaru']"
+        },
+        {
+          "action": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "US-003",
+      "title": "Build featured projects tier",
+      "description": "As a visitor, I want to see the most substantive projects with full detail, so I can understand the depth of Andrei's work.\n\nThis replaces the current \"Proof of impact\" card (the `\u003cdiv\u003e` at lines 42-63 of `home.html.heex`) with a new projects section containing featured project cards.\n\nCreate a NEW section after the hero grid (after the closing `\u003c/section\u003e` at line 76) with:\n- A factual heading (e.g., \"Work\" or \"Projects\") and a subtle count (\"14 engagements\")\n- 3-4 featured project cards using native `\u003cdetails\u003e` elements, selected by most resume bullet points\n\nFeatured project data (from resume PDF):\n\n1. **FinancialDocs** — Full-Stack Engineer | Contract | Remote\n   - Maintained three legacy paystub platforms (thepaystubs.com, paystubs.net, paystubcreator.com) serving hundreds of users, evolving a shared codebase of 2,000+ service classes without breaking production\n   - Architected a legal document platform (legaldocs.com) — designed the CMS data model with 14 collections, built the document generation pipeline, and integrated dual payment providers\n   - Designed a webhook-based caching system with CDN integration to handle content updates across interconnected documents\n   - Delivered entirely using agentic AI workflows\n   - Tech: TypeScript, PHP, React/Next.js, NestJS, PayloadCMS, MongoDB, PostgreSQL\n\n2. **NIXAP** — Full-Stack Engineer | Contract | Hybrid\n   - Built custom web applications and internal tools for client projects\n   - Engineered a scalable multi-tenant VoIP system integrating PBX/SIP protocols with a desktop application for call management\n   - Developed with AI-assisted workflows\n   - Tech: TypeScript, PHP/Symfony/Laravel, Node.js, Vue.js/Nuxt.js, Electron, VoIP/SIP, RabbitMQ, Elasticsearch, WebSocket\n\n3. **Dispatch42** — Full-Stack Developer | Full-Time | In-Office\n   - Architected a real-time logistics CRM with microservices backend and mobile app\n   - Built serverless notifications system and integrated proprietary hardware data feeds\n   - Tech: TypeScript, Kotlin, React, GraphQL, Node.js, AWS (Lambda, SQS, DynamoDB, CDK), Jest\n\n4. **Travod** — Full-Stack Developer | Full-Time | In-Office (optional 4th featured card)\n   - Developed backend and frontend for Traduno, an in-house translation services CRM\n   - Led development of a GraphQL API layer over the existing Ruby backend\n   - Tech: Ruby/Rails, Vue/Nuxt, GraphQL, MySQL, RSpec\n\nCard design:\n- Each card is a `\u003cdetails\u003e` element that expands on click\n- Always visible (summary): Company name (serif heading), role title from resume, one-sentence summary\n- On expand: Full bullet points from resume (verbatim or faithful), tech stack as small rounded pills\n- Each featured card gets a subtle 2px top border accent using warm palette colors (`#7b4a2c`, `#a0826d`, `#c7b3a4`, `#d4a983`)\n- Card classes: `rounded-[28px] border border-white/30 bg-white/65 p-6 shadow-[0_20px_60px_rgba(28,17,12,0.12)]`\n- Tech pill classes: `rounded-full bg-[#1a0f09]/5 px-2.5 py-0.5 text-xs text-[#3b2b22]`\n- Section wrapper classes: `rounded-[32px] border border-white/30 bg-white/70 p-8 shadow-[0_30px_80px_rgba(28,17,12,0.12)]`\n\nAlso remove the old \"Proof of impact\" card content (lines 42-63) since it's replaced by this new section. Keep the right column `\u003cdiv class=\"space-y-6\"\u003e` wrapper but remove the proof-of-impact card from it — the dark card (lines 65-74) stays for now (US-006 will handle it later).",
+      "acceptanceCriteria": [
+        "New projects section exists with a factual heading (no marketing language) and a count like '14 engagements'",
+        "3-4 featured cards present for the projects with the most resume bullets (FinancialDocs, NIXAP, Dispatch42, optionally Travod)",
+        "Each card shows company name, role title (from resume), and one-sentence summary in the always-visible summary",
+        "Each card expands via native \u003cdetails\u003e to show full resume bullet points and tech stack pills",
+        "Each featured card has a subtle warm-colored 2px top border accent (different color per card)",
+        "All text matches the resume — no embellishments or invented claims",
+        "Old 'Proof of impact' card content is removed",
+        "Cards stack vertically on mobile, responsive layout",
+        "No JavaScript used — native \u003cdetails\u003e only",
+        "Typecheck passes"
+      ],
+      "tags": [
+        "ui"
+      ],
+      "priority": 3,
+      "passes": true,
+      "retries": 0,
+      "blocked": false,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:33:54+02:00",
+        "commit": "a5fa5d0",
+        "summary": "feat: US-003 - Build featured projects tier"
+      },
+      "notes": "",
+      "browserSteps": [
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "details"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "FinancialDocs"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "NIXAP"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Dispatch42"
+        },
+        {
+          "action": "click",
+          "selector": "details summary"
+        },
+        {
+          "action": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "US-004",
+      "title": "Build compact projects tier",
+      "description": "As a visitor, I want to see all remaining projects in a compact, browsable format so I can understand the breadth of Andrei's experience.\n\nThis is the second tier below the featured projects created in US-003. It shows the remaining projects in a denser layout within the same projects section.\n\nAdd a subtle label (e.g., \"More work\" in small uppercase tracking) and compact expandable cards for each remaining project.\n\nCompact project data (from resume PDF — exclude any that were placed in the featured tier):\n\n1. **Rio** — Full-Stack Engineer | Contract | Remote\n   - Developed backend services (Kotlin, Node.js) and frontend features for a live-streaming platform\n   - Tech: Kotlin, NestJS, Node.js, Vue/Nuxt, TypeScript, PostgreSQL\n\n2. **Crawless** — Full-Stack Developer | Contract | Remote\n   - Built backend systems and internal CRM for an Electron-based browser automation IDE\n   - Tech: TypeScript, Vue.js, Electron, PostgreSQL, MongoDB, REST, Jest\n\n3. **Deditech Com** — Full-Stack Developer | Contract | Remote\n   - Led development of a B2B CRM and a home rental platform from scratch\n   - Tech: PHP/Laravel, Vue/Nuxt, TypeScript, MySQL\n\n4. **eToro** — Back-End Developer | Contract | Remote\n   - Led backend API development for a mobile application serving job seekers and recruiters\n   - Tech: PHP/Laravel, MySQL, REST, Pest\n\n5. **MKM** — Full-Stack Developer | Contract | Remote\n   - Developed a UK e-commerce platform integrating headless CRM and payment APIs\n   - Tech: PHP/Laravel, Vue/Nuxt, TypeScript, MySQL, Cypress\n\n6. **GoodLeap** — Back-End Developer | Contract | Remote\n   - Built and maintained serverless microservices for a large-scale solar financing platform, integrating DocuSign and payment workflows\n   - Tech: Node.js, TypeScript, AWS (Lambda, SQS, S3), REST, Jest\n\n7. **RentInsider** — Front-End Developer | Contract | Remote\n   - Led frontend development from scratch for a Romanian/European rental platform, integrating with a Python backend\n   - Tech: TypeScript, React/Next.js, ChakraUI, REST, Cypress\n\n8. **Virail** — Full-Stack Developer | Contract | Remote\n   - Developed backend and frontend features for a high-traffic travel search engine, integrating Elasticsearch for performance\n   - Tech: PHP/Phalcon, Vue, Elasticsearch, REST, Cypress\n\n9. **Deutsche Fintech Solutions** — Front-End Developer | Contract | Remote\n   - Led frontend development and transition to micro-frontend architecture for B2C/B2B financial apps\n   - Tech: TypeScript, React/Next.js, Svelte, GraphQL, Luigi/Micro-frontends, Cypress\n\n10. **Travod** — Full-Stack Developer | Full-Time | In-Office (only if NOT in featured tier)\n    - Developed backend and frontend for Traduno, an in-house translation services CRM\n    - Led development of a GraphQL API layer over the existing Ruby backend\n    - Tech: Ruby/Rails, Vue/Nuxt, GraphQL, MySQL, RSpec\n\nCompact card design:\n- Each is a `\u003cdetails\u003e` element\n- Always visible (summary): Company name (semibold), one-line description\n- On expand: Full bullet point(s) from resume + tech stack pills\n- No employment type tags — keep minimal\n- Card classes: `rounded-2xl border border-[#e0d2c4] bg-white/70 p-4`\n- Responsive grid: 2 columns on md+, single column on mobile (`grid gap-4 md:grid-cols-2`)",
+      "acceptanceCriteria": [
+        "All remaining projects from the resume (not in featured tier) are included as compact cards",
+        "Each compact card shows company name and one-line description in the always-visible summary",
+        "Each compact card expands via native \u003cdetails\u003e to show full resume bullet point(s) and tech stack pills",
+        "All text matches the resume — no embellishments",
+        "Responsive grid: 2 columns on md+, single column on mobile",
+        "Uses native \u003cdetails\u003e elements (no JavaScript)",
+        "Typecheck passes"
+      ],
+      "tags": [
+        "ui"
+      ],
+      "priority": 4,
+      "passes": true,
+      "retries": 0,
+      "blocked": false,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:36:15+02:00",
+        "commit": "f3b104a",
+        "summary": "feat: US-004 - Build compact projects tier"
+      },
+      "notes": "",
+      "browserSteps": [
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Rio"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "GoodLeap"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Virail"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Deutsche Fintech"
+        },
+        {
+          "action": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "US-005",
+      "title": "Add freelance aggregate card",
+      "description": "As a visitor, I want to see the \"80+ projects\" freelance history as a distinct anchor at the bottom of the projects section, so I understand the full scope of Andrei's experience.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex` — placed after all individual project cards as the final element of the projects section.\n\nDesign:\n- Dark card style: `rounded-[28px] border border-white/10 bg-[#1a0f09]/90 p-6 text-white`\n- Headline: \"Independent Freelancing\" (matches resume section name)\n- Content (from resume verbatim):\n  - \"Delivered 80+ projects across CRM, SaaS, and e-commerce — handling client requirements, architecture, implementation, and ongoing maintenance end-to-end\"\n  - \"Worked across web, desktop, and mobile stacks with direct client interaction throughout\"\n- Tech stack pills (dark style: `rounded-full border border-white/20 px-2.5 py-0.5 text-xs text-white/70`):\n  PHP, JavaScript/TypeScript, Python, Vue.js, React, Node.js, MySQL, PostgreSQL, MongoDB, DynamoDB, Flutter, Delphi\n- \"80+ projects\" should be typographically prominent (larger text, bold)\n- NOT expandable — content is short enough to show in full. Always fully visible.",
+      "acceptanceCriteria": [
+        "Dark card exists at the bottom of the projects section with bg-[#1a0f09]/90 styling",
+        "Both resume bullet points included (verbatim or faithful summary) — '80+ projects across CRM, SaaS, and e-commerce' and 'web, desktop, and mobile stacks'",
+        "Tech stack pills present in muted white-on-dark style for all 12 technologies listed in resume",
+        "'80+ projects' is typographically prominent (larger/bolder than surrounding text)",
+        "Card is NOT expandable — all content always visible",
+        "Typecheck passes"
+      ],
+      "tags": [
+        "ui"
+      ],
+      "priority": 5,
+      "passes": true,
+      "retries": 0,
+      "blocked": false,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:38:06+02:00",
+        "commit": "e349f9c",
+        "summary": "feat: US-005 - Add freelance aggregate card"
+      },
+      "notes": "",
+      "browserSteps": [
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "80+"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Independent Freelancing"
+        },
+        {
+          "action": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "US-006",
+      "title": "Replace dark Roles card with background info",
+      "description": "As a visitor, I want to see real background information (education, languages, location) instead of fabricated positioning claims.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex`\n\nThe dark card in the right column of the hero area (originally lines 65-74) currently contains \"Roles I'm best for\" and \"Roles I'm not best for\" — these are fabricated claims not in the resume.\n\nReplace with factual background info from the resume:\n- **Education:** Free International University of Moldova — Information Technology\n- **Languages:** English (C2), Romanian (Native), Russian (Native)\n- **Location:** Moldova (mentioned naturally, not emphasized)\n- **Work style:** Mostly contract, mostly remote (12 of 14 listed roles are contract, most are remote)\n\nPreserve the dark card visual style: `rounded-[28px] border border-white/30 bg-[#1a0f09]/90 p-6 text-white shadow-[0_20px_60px_rgba(28,17,12,0.2)]`\n\nRemove all current content: \"Roles I'm best for\" / \"Roles I'm not best for\".",
+      "acceptanceCriteria": [
+        "Dark card contains Education: 'Free International University of Moldova — Information Technology'",
+        "Dark card contains Languages: 'English (C2)', 'Romanian (Native)', 'Russian (Native)'",
+        "Dark card mentions Moldova as location",
+        "Dark card mentions contract/remote work style",
+        "All 'Roles I'm best for' and 'Roles I'm not best for' content is removed",
+        "Dark card visual style preserved (dark background, white text, rounded corners)",
+        "Typecheck passes"
+      ],
+      "tags": [
+        "ui"
+      ],
+      "priority": 6,
+      "passes": true,
+      "retries": 0,
+      "blocked": false,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:39:19+02:00",
+        "commit": "2c2ef45",
+        "summary": "feat: US-006 - Replace dark Roles card with background info"
+      },
+      "notes": "",
+      "browserSteps": [
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Free International University of Moldova"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "English (C2)"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "Romanian (Native)"
+        },
+        {
+          "action": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "US-007",
+      "title": "Replace How I work with honest working style",
+      "description": "As a visitor, I want to understand Andrei's actual working style based on what the resume demonstrates.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex` — the \"How I work\" section (originally lines 78-103).\n\nReplace the 4 cards with honest working style facts derived from the resume:\n\n1. **Ramps up fast:** 80+ projects across different stacks and domains. The resume shows joining codebases in TypeScript, PHP, Ruby, Python, Kotlin, and more — each time at a different company.\n\n2. **Full-stack ownership:** The resume shows backend, frontend, infrastructure, and deployment work across almost every role. Not just one layer.\n\n3. **Remote and async:** Almost every role is listed as \"Remote.\" Only 2 of 14 company roles were in-office. 13 years of remote contract work.\n\n4. **AI-assisted workflows:** FinancialDocs was \"delivered entirely using agentic AI workflows.\" NIXAP mentions \"developed with AI-assisted workflows.\" Frame as current practice, not a career-long identity.\n\nThe section heading \"How I work\" can stay but the subtitle must be factual (remove \"Clear expectations, fast feedback loops, and a bias for shipping the right thing with the least surprise\").\n\nCard styling preserved: `rounded-2xl border border-[#e0d2c4] bg-white/70 p-4` in a `grid gap-4 md:grid-cols-2` layout.",
+      "acceptanceCriteria": [
+        "Section heading is present (e.g., 'How I work') with a factual subtitle (no marketing language)",
+        "4 cards present with resume-grounded working style facts covering: fast ramp-up, full-stack ownership, remote/async, AI-assisted workflows",
+        "Card about ramp-up references 80+ projects and multiple stacks/domains",
+        "Card about remote work references that most roles were contract and remote",
+        "Card about AI workflows specifically references FinancialDocs and/or NIXAP from the resume",
+        "No invented process claims — everything traces to resume facts",
+        "Card styling preserved (rounded corners, warm borders, white backgrounds, 2-column grid on md+)",
+        "Typecheck passes"
+      ],
+      "tags": [
+        "ui"
+      ],
+      "priority": 7,
+      "passes": true,
+      "retries": 0,
+      "blocked": false,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:40:53+02:00",
+        "commit": "0398aa5",
+        "summary": "feat: US-007 - Replace How I work with honest working style"
+      },
+      "notes": "",
+      "browserSteps": [
+        {
+          "action": "navigate",
+          "url": "/"
+        },
+        {
+          "action": "assertText",
+          "selector": "main",
+          "contains": "How I work"
+        },
+        {
+          "action": "screenshot"
+        }
+      ]
+    },
+    {
+      "id": "US-008",
+      "title": "Rewrite Ask me about expandable section",
+      "description": "As a visitor, I want the expandable topics to cover things the resume actually supports.\n\nFile: `lib/scripness_web/controllers/page_html/home.html.heex` — the \"Ask me about\" section (originally lines 105-149).\n\nReplace the 4 expandable topics with resume-grounded content:\n\n1. **Working across many stacks:** TypeScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi. Acknowledge depth varies (\"TypeScript and PHP are where I've spent the most time\"). No overclaiming.\n\n2. **80+ projects as a freelancer:** Use resume wording: \"Delivered 80+ projects across CRM, SaaS, and e-commerce — handling client requirements, architecture, implementation, and ongoing maintenance end-to-end.\"\n\n3. **Legacy codebases:** FinancialDocs: \"evolving a shared codebase of 2,000+ service classes without breaking production\" across three interconnected platforms.\n\n4. **Agentic AI development:** FinancialDocs and NIXAP both mention AI workflows. Frame as current practice. Be specific about what was delivered.\n\nRemove:\n- \"Cross-functional leadership\" — no resume support\n- \"Scaling real-time systems\" — one project doesn't make a specialty\n\nPreserve the `\u003cdetails\u003e` interactive pattern and card styling: `rounded-2xl border border-[#e0d2c4] bg-white/80 p-4` in a `grid gap-4 md:grid-cols-2` layout.\n\nEach expanded description should use resume wording or faithful summaries. Tone is minimal and factual.",
+      "acceptanceCriteria": [
+        "4 expandable \u003cdetails\u003e topics present, all grounded in resume content",
+        "Topic about stacks lists specific languages from resume and acknowledges varying depth",
+        "Topic about freelancing uses resume wording about 80+ projects",
+        "Topic about legacy codebases references FinancialDocs and the 2,000+ service classes",
+        "Topic about AI development references FinancialDocs and NIXAP specifically",
+        "'Cross-functional leadership' topic is removed",
+        "'Scaling real-time systems' topic is removed",
+        "Each expanded description uses resume wording or faithful summaries",
+        "The \u003cdetails\u003e interactive pattern is preserved",
+        "Typecheck passes"
+      ],
+      "tags": [
+        "ui"
+      ],
+      "priority": 8,
+      "passes": true,
+      "retries": 0,
+      "blocked": false,
+      "lastResult": {
+        "completedAt": "2026-02-12T23:42:22+02:00",
+        "commit": "9c89b1e",
+        "summary": "feat: US-008 - Rewrite Ask me about expandable section"
+      },
+      "notes": ""
+    }
+  ]
+}
