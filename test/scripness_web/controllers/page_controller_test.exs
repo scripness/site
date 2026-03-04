@@ -21,7 +21,7 @@ defmodule ScripnessWeb.PageControllerTest do
 
     assert body =~ ~s(href="mailto:mail@scripness.com")
     assert body =~ "mail@scripness.com"
-    assert body =~ ~s(href="/assets/Andrei%20Scripcaru%20-%20Technical.pdf")
+    assert body =~ ~s(href="/assets/andrei-scripcaru-technical.pdf")
     assert body =~ "Download resume"
   end
 
@@ -59,7 +59,7 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Email me"
     assert body =~ "Resume (PDF)"
     assert body =~ ~s(href="mailto:mail@scripness.com")
-    assert body =~ ~s(href="/assets/Andrei%20Scripcaru%20-%20Technical.pdf")
+    assert body =~ ~s(href="/assets/andrei-scripcaru-technical.pdf")
     refute body =~ "Start a conversation"
   end
 

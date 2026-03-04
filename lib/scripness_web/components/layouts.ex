@@ -65,7 +65,7 @@ defmodule ScripnessWeb.Layouts do
             </a>
             <a
               class="rounded-full bg-white px-4 py-2 text-[#1a0f09] transition hover:-translate-y-0.5 hover:shadow-lg"
-              href="/assets/Andrei%20Scripcaru%20-%20Technical.pdf"
+              href="/assets/andrei-scripcaru-technical.pdf"
             >
               Download resume
             </a>

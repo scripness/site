@@ -9,7 +9,7 @@ Deliver a cozy, premium-feeling personal site that makes hiring managers want to
 - Run `mix precommit` after changes and fix any failures.
 - Use `Req` for HTTP calls when needed (do not add `:httpoison`, `:tesla`, or `:httpc`).
 - Keep the home page content in `lib/scripness_web/controllers/page_html/home.html.heex`.
-- Keep the resume PDF in `priv/static/assets/Andrei Scripcaru - Technical.pdf` and link to it from the layout.
+- Keep the resume PDF in `priv/static/assets/andrei-scripcaru-technical.pdf` and link to it from the layout.
 - The production domain is `scripness.com` (`scripness.fly.dev` also works); keep `PHX_HOST` aligned in Fly secrets.
 - Deploy with `fly deploy` from main. The app auto-stops when idle and auto-starts on request.
 
