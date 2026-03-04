@@ -12,7 +12,8 @@ defmodule ScripnessWeb.PageControllerTest do
 
     assert body =~ "Andrei Scripcaru"
     assert body =~ "Full-stack software engineer"
-    refute body =~ "Staff-level"
+    # "Staff-level" should not appear in visible page content (it's OK in meta tags)
+    refute body =~ ">Staff-level"
   end
 
   test "header contains email and resume links", %{conn: conn} do

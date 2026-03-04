@@ -50,7 +50,11 @@ defmodule ScripnessWeb.Layouts do
       <header class="relative z-10 px-6 pt-8 sm:px-10 lg:px-16">
         <div class="flex flex-wrap items-center justify-between gap-4">
           <div class="flex items-center gap-3 text-white/90">
-            <div class="h-10 w-10 rounded-full border border-white/30 bg-white/10"></div>
+            <img
+              src={~p"/images/sigil.svg"}
+              alt=""
+              class="h-10 w-10 rounded-full border border-white/30 bg-white/10 p-1"
+            />
             <div>
               <p class="text-sm uppercase tracking-[0.3em]">Andrei Scripcaru</p>
               <p class="text-xs text-white/70">Full-stack software engineer</p>

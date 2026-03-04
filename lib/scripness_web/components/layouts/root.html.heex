@@ -11,6 +11,59 @@
       name="description"
       content="Andrei Scripcaru — staff-level full-stack engineer specializing in system architecture, AI-assisted delivery, and complex product execution."
     />
+
+    <%!-- Open Graph --%>
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Andrei Scripcaru · Software Engineer" />
+    <meta
+      property="og:description"
+      content="Staff-level full-stack engineer specializing in system architecture, AI-assisted delivery, and complex product execution."
+    />
+    <meta property="og:url" content="https://scripness.com/" />
+    <meta property="og:image" content="https://scripness.com/images/og-image.png" />
+    <meta property="og:site_name" content="Andrei Scripcaru" />
+    <meta property="og:locale" content="en_US" />
+
+    <%!-- Twitter/X Card --%>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Andrei Scripcaru · Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Staff-level full-stack engineer specializing in system architecture, AI-assisted delivery, and complex product execution."
+    />
+    <meta name="twitter:image" content="https://scripness.com/images/og-image.png" />
+
+    <%!-- Canonical + Icons --%>
+    <link rel="canonical" href="https://scripness.com/" />
+    <link rel="icon" type="image/svg+xml" href={~p"/favicon.svg"} />
+    <link rel="apple-touch-icon" href={~p"/apple-touch-icon.png"} />
+
+    <%!-- Structured Data --%>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "dateModified": "2026-03-04",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Andrei Scripcaru",
+          "jobTitle": "Full Stack Software Engineer",
+          "url": "https://scripness.com",
+          "email": "mail@scripness.com",
+          "telephone": "+37378181261",
+          "description": "Staff-level full-stack engineer specializing in system architecture, AI-assisted delivery, and complex product execution.",
+          "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Free International University of Moldova"
+          },
+          "knowsAbout": ["System Architecture", "Full-Stack Development", "Elixir", "Phoenix", "TypeScript", "React", "AI-Assisted Development"],
+          "sameAs": [
+            "https://github.com/scripness"
+          ]
+        }
+      }
+    </script>
+
     <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
     </script>
