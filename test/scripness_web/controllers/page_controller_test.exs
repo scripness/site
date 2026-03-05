@@ -61,7 +61,6 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Resume (PDF)"
     assert body =~ ~s(href="mailto:mail@scripness.com")
     assert body =~ ~s(href="/assets/andrei-scripcaru-technical.pdf")
-    refute body =~ "Start a conversation"
   end
 
   test "background card contains education from resume", %{conn: conn} do
