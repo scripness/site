@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #1a1a1a;
+  --color-secondary: #4a4a4a;
+  --color-accent: #6b7280;
+  --color-light: #9ca3af;
+  --color-border: #e5e7eb;
+  --color-background: #ffffff;
+
+  --font-main: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}
+
+@page {
+  size: A4;
+  margin: 40px 50px;
+}
+
+@page :first {
+  margin-top: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: 10pt;
+  line-height: 1.5;
+  color: var(--color-primary);
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.resume {
+  max-width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 40px 50px;
+  background: var(--color-background);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.name {
+  font-size: 28pt;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.name .first {
+  font-weight: 300;
+  color: var(--color-secondary);
+}
+
+.name .last {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.contact {
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+.contact a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Sections */
+.section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-title {
+  font-size: 11pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Summary */
+.summary-text {
+  font-size: 10pt;
+  line-height: 1.6;
+  color: var(--color-primary);
+}
+
+/* Skills */
+.skills-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: var(--spacing-xs) var(--spacing-lg);
+}
+
+.skills-list li {
+  font-size: 10pt;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.skills-list li::before {
+  content: "—";
+  margin-right: var(--spacing-sm);
+  color: var(--color-light);
+}
+
+.tech-line {
+  font-size: 9pt;
+  font-style: italic;
+  color: var(--color-accent);
+  margin-top: var(--spacing-sm);
+}
+
+/* Jobs */
+.job {
+  margin-bottom: var(--spacing-md);
+  page-break-inside: avoid;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--spacing-xs);
+}
+
+.company {
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.job-meta {
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+.job-bullets {
+  list-style: none;
+  padding-left: 0;
+}
+
+.job-bullets li {
+  font-size: 9.5pt;
+  line-height: 1.5;
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-md);
+  position: relative;
+}
+
+.job-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-light);
+}
+
+/* Tech-only toggle */
+.tech-only {
+  display: none;
+}
+
+.date-only {
+  display: none;
+}
+
+.resume[data-variant="technical"] .tech-only {
+  display: block;
+}
+
+.resume[data-variant="full"] .tech-only {
+  display: block;
+}
+
+.resume[data-variant="full"] .date-only {
+  display: inline;
+}
+
+/* Technical Profile */
+.tech-profile {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.15rem 0.75rem;
+}
+
+.tech-profile dt {
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.tech-profile dd {
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--color-secondary);
+}
+
+/* Education & Languages */
+.info-line {
+  font-size: 9.5pt;
+  color: var(--color-secondary);
+  line-height: 1.5;
+}
+
+/* Print optimizations */
+@media print {
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .resume {
+    padding: 35px 45px;
+  }
+
+  .job {
+    page-break-inside: avoid;
+  }
+}

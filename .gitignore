@@ -38,3 +38,5 @@ npm-debug.log
 # Upwork drafts
 upwork-*.txt
 
+# Retired Ralph workflow artifacts
+/.ralph/
