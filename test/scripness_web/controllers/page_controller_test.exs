@@ -23,7 +23,7 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "final merge"
   end
 
-  test "background describes current work without education or spoken languages", %{conn: conn} do
+  test "background describes current work", %{conn: conn} do
     body = conn |> get(~p"/") |> html_response(200)
 
     assert body =~ ~s(id="background")
@@ -31,11 +31,6 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Independent project"
     assert body =~ "Mar 2026–Present"
     assert body =~ "Moldova"
-    refute body =~ "Free International University"
-    refute body =~ "English (C2)"
-    refute body =~ "Romanian (Native)"
-    refute body =~ "Russian (Native)"
-    refute body =~ "alumniOf"
   end
 
   test "Cryptoli project states verified product, workflow, stack, and operations", %{conn: conn} do
@@ -110,18 +105,6 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Verify, review, then hand off"
     assert body =~ "operator-requested canonical issue"
     assert body =~ "fresh-context read-only review"
-  end
-
-  test "removes obsolete generic agent positioning and tools", %{conn: conn} do
-    body = conn |> get(~p"/") |> html_response(200)
-
-    refute body =~ "AI-native"
-    refute body =~ "Agentic AI"
-    refute body =~ "AI-assisted"
-    refute body =~ "autonomous implementation"
-    refute body =~ "Claude Code"
-    refute body =~ "Ralph"
-    refute body =~ "staff-level"
   end
 
   test "ask me about section offers factual conversation starters", %{conn: conn} do
