@@ -80,6 +80,13 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "80+ CRM, SaaS, and e-commerce projects"
   end
 
+  test "each selected project disclosure has accurate open and closed labels", %{conn: conn} do
+    body = conn |> get(~p"/") |> html_response(200)
+
+    assert length(Regex.scan(~r/group-open:hidden/, body)) == 4
+    assert length(Regex.scan(~r/group-open:inline/, body)) == 4
+  end
+
   test "technical profile frames stack knowledge as engineering judgment", %{conn: conn} do
     body = conn |> get(~p"/") |> html_response(200)
 
