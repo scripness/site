@@ -7,11 +7,10 @@ also owns the editable résumé sources and generates the PDFs published by the 
 
 1. `priv/resume/resume.html` is authoritative for English career facts, résumé wording,
    and the plain, Technical, and Full variants.
-2. `priv/resume/resume-cnpf.html` is authoritative for the Romanian CNPF variant.
-3. `priv/resume/resume.css` is authoritative for résumé layout and print styling.
-4. `priv/static/assets/andrei-scripcaru-technical.pdf` is the generated canonical public
+2. `priv/resume/resume.css` is authoritative for résumé layout and print styling.
+3. `priv/static/assets/andrei-scripcaru-technical.pdf` is the generated canonical public
    résumé. All PDFs are generated artifacts; never edit them manually.
-5. `lib/scripness_web/controllers/page_html/home.html.heex` is authoritative for website
+4. `lib/scripness_web/controllers/page_html/home.html.heex` is authoritative for website
    presentation. Claims about Andrei's career must be supported by the résumé sources.
 
 For a career-content change, update the relevant résumé HTML first, run
@@ -20,7 +19,7 @@ source; do not create or maintain a separate résumé repository.
 
 ## Required workflows
 
-- Build all four résumé PDFs with `mix resume.build`. Chromium is required.
+- Build all three résumé PDFs with `mix resume.build`. Chromium is required.
 - Run `mix precommit` after changes and fix all failures.
 - Pushes to GitHub `main` deploy through `.github/workflows/deploy.yml`; production uses
   `scripness.com`. Manual deployments use `fly deploy`.

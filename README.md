@@ -8,7 +8,6 @@ generate his résumé PDFs. It is the single repository for both published surfa
 Career facts and résumé wording originate in:
 
 - `priv/resume/resume.html` for the English résumé and all its variants
-- `priv/resume/resume-cnpf.html` for the Romanian CNPF résumé
 - `priv/resume/resume.css` for résumé presentation and print layout
 
 The PDFs in `priv/static/assets/` are generated artifacts. Never edit them manually.
@@ -31,7 +30,7 @@ source first, regenerate the PDFs, and then align the homepage.
 - Homepage content: `lib/scripness_web/controllers/page_html/home.html.heex`
 - Layout shell: `lib/scripness_web/components/layouts.ex`
 - Styles: `assets/css/app.css`
-- Résumé sources: `priv/resume/resume.html`, `priv/resume/resume-cnpf.html`, and `priv/resume/resume.css`
+- Résumé sources: `priv/resume/resume.html` and `priv/resume/resume.css`
 - Canonical résumé asset: `priv/static/assets/andrei-scripcaru-technical.pdf`
 
 ## Building the résumé PDFs
@@ -43,12 +42,11 @@ mix resume.build
 ```
 
 Chromium must be installed as `chromium`, `chromium-browser`, `google-chrome`, or
-`google-chrome-stable`. The task generates these four A4 PDFs in `priv/static/assets/`:
+`google-chrome-stable`. The task generates these three A4 PDFs in `priv/static/assets/`:
 
 - `andrei-scripcaru.pdf` (plain)
 - `andrei-scripcaru-technical.pdf` (canonical Technical résumé)
 - `andrei-scripcaru-full.pdf`
-- `andrei-scripcaru-cnpf.pdf`
 
 ## Local development
 

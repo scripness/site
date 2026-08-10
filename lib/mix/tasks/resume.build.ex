@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.Resume.Build do
   use Mix.Task
 
-  @shortdoc "Builds all résumé PDFs with Chromium"
+  @shortdoc "Builds the résumé PDFs with Chromium"
 
   @chromium_names ~w(chromium chromium-browser google-chrome google-chrome-stable)
   @resume_marker ~s(<div class="resume">)
@@ -21,13 +21,11 @@ defmodule Mix.Tasks.Resume.Build do
     try do
       File.cp!(Path.join(source_dir, "resume.css"), Path.join(temporary_dir, "resume.css"))
       resume_html = File.read!(Path.join(source_dir, "resume.html"))
-      cnpf_html = File.read!(Path.join(source_dir, "resume-cnpf.html"))
 
       variants = [
         {"andrei-scripcaru.pdf", resume_html},
         {"andrei-scripcaru-technical.pdf", variant_html(resume_html, "technical")},
-        {"andrei-scripcaru-full.pdf", variant_html(resume_html, "full")},
-        {"andrei-scripcaru-cnpf.pdf", cnpf_html}
+        {"andrei-scripcaru-full.pdf", variant_html(resume_html, "full")}
       ]
 
       File.mkdir_p!(output_dir)
