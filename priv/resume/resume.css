@@ -73,6 +73,15 @@ body {
   color: var(--color-primary);
 }
 
+.professional-title {
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-secondary);
+  font-size: 9.5pt;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .contact {
   font-size: 9pt;
   font-weight: 400;
@@ -139,6 +148,11 @@ body {
 .job {
   margin-bottom: var(--spacing-md);
   page-break-inside: avoid;
+}
+
+.experience {
+  break-before: page;
+  page-break-before: always;
 }
 
 .job-header {
@@ -221,13 +235,6 @@ body {
   color: var(--color-secondary);
 }
 
-/* Education & Languages */
-.info-line {
-  font-size: 9.5pt;
-  color: var(--color-secondary);
-  line-height: 1.5;
-}
-
 /* Print optimizations */
 @media print {
   body {
@@ -236,7 +243,8 @@ body {
   }
 
   .resume {
-    padding: 35px 45px;
+    min-height: 0;
+    padding: 35px 45px 0;
   }
 
   .job {
