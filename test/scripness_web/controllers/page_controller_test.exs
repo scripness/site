@@ -13,40 +13,39 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ ~s(href="tel:+37378181261")
   end
 
-  test "publishes the current coding-agent responsibility accurately", %{conn: conn} do
+  test "publishes the coding-agent responsibility accurately", %{conn: conn} do
     body = conn |> get(~p"/") |> html_response(200)
 
     assert body =~ "coding agents"
-    assert body =~ "under my technical direction"
-    assert body =~ "whole-change review, debugging, verification, and release readiness"
+    assert body =~ "agents for implementation"
+    assert body =~ "technical direction, review, debugging, verification, and release readiness"
     assert body =~ "engineering accountability stays with me"
-    assert body =~ "final merge"
+    assert body =~ "Release readiness remains a human engineering decision"
   end
 
-  test "background describes current work", %{conn: conn} do
+  test "background summarizes professional breadth and working model", %{conn: conn} do
     body = conn |> get(~p"/") |> html_response(200)
 
     assert body =~ ~s(id="background")
-    assert body =~ "Cryptoli"
-    assert body =~ "Independent project"
-    assert body =~ "Mar 2026–Present"
+    assert body =~ "More than a decade across product architecture and full-stack delivery"
+    assert body =~ "Agent-produced implementation with human engineering accountability"
     assert body =~ "Moldova"
   end
 
-  test "Cryptoli project states verified product, workflow, stack, and operations", %{conn: conn} do
+  test "Cryptoli is presented as a selected project with its product and technical scope", %{
+    conn: conn
+  } do
     body = conn |> get(~p"/") |> html_response(200)
 
     assert body =~ ~s(id="project-cryptoli")
     assert body =~ "cryptocurrency review and community platform"
-    assert body =~ "authentication, community content, moderation, discovery, analytics"
-    assert body =~ "isolated worktrees"
-    assert body =~ "exact-head checks"
-    assert body =~ "two whole-PR reviews"
-    assert body =~ "human handoff and merge"
+    assert body =~ "community content, moderation, discovery, notifications, analytics"
+    assert body =~ "agent-directed delivery"
+    assert body =~ "automated verification"
+    assert body =~ "production operations"
     assert body =~ "NestJS"
     assert body =~ "Next.js/React"
     assert body =~ "PostgreSQL"
-    assert body =~ "Grafana/Alloy/Loki"
   end
 
   test "selected and earlier work remains grounded in the resume", %{conn: conn} do
@@ -90,21 +89,21 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Programming"
     assert body =~ "TypeScript, JavaScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi"
     assert body =~ "architecture, constraints, review, debugging, and verification"
-    assert body =~ "specification-driven delivery"
-    assert body =~ "Playwright browser QA"
-    assert body =~ "human-controlled merge"
+    assert body =~ "specification-led agent delivery"
+    assert body =~ "browser QA"
+    assert body =~ "release control"
   end
 
-  test "how I work reflects Cryptoli's enforced lifecycle", %{conn: conn} do
+  test "how I work explains accountable agent-directed engineering", %{conn: conn} do
     body = conn |> get(~p"/") |> html_response(200)
 
     assert body =~ ~s(id="how-i-work")
-    assert body =~ "Ground scope and ownership"
-    assert body =~ "Separate intent from evidence"
+    assert body =~ "Define the intended outcome"
+    assert body =~ "Shape the system"
     assert body =~ "Direct the change, keep accountability"
-    assert body =~ "Verify, review, then hand off"
-    assert body =~ "operator-requested canonical issue"
-    assert body =~ "fresh-context read-only review"
+    assert body =~ "Prove the result"
+    assert body =~ "architecture and boundaries with the whole product in mind"
+    assert body =~ "accountability for the resulting system remains with me"
   end
 
   test "ask me about section offers factual conversation starters", %{conn: conn} do
@@ -114,7 +113,7 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Working across many stacks"
     assert body =~ "80+ projects as a freelancer"
     assert body =~ "Legacy codebases"
-    assert body =~ "Accountable coding-agent delivery"
-    assert body =~ "Cryptoli does not treat agent output as proof"
+    assert body =~ "Engineering with coding agents"
+    assert body =~ "reviewed and verified as engineering work"
   end
 end
