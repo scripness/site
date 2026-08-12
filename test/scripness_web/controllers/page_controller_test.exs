@@ -29,6 +29,8 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ ~s(id="background")
     assert body =~ "More than a decade building full-stack products"
     assert body =~ "Coding agents produce the implementation; I guide and check the work"
+    assert body =~ "Mostly contract and remote"
+    assert body =~ "across many teams, products, and codebases"
     assert body =~ "Moldova"
   end
 
@@ -102,8 +104,35 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Plan the system"
     assert body =~ "Guide the agents"
     assert body =~ "Review and test"
+    assert body =~ "Get up to speed"
     assert body =~ "I find the cause and make sure it is fixed properly"
     assert body =~ "I decide when the result is ready to release"
+    assert body =~ "understand unfamiliar systems"
+    assert body =~ "without needing one familiar stack or domain"
+  end
+
+  test "links to GitHub and LinkedIn without hiding them on small screens", %{conn: conn} do
+    body = conn |> get(~p"/") |> html_response(200)
+
+    assert body =~ ~s(href="https://github.com/scripness")
+    assert body =~ ~s(href="https://www.linkedin.com/in/andrei-scripcaru/")
+
+    refute Regex.match?(~r/href="https:\/\/github\.com\/scripness"[^>]*class="[^"]*hidden/, body)
+
+    refute Regex.match?(
+             ~r/href="https:\/\/www\.linkedin\.com\/in\/andrei-scripcaru\/"[^>]*class="[^"]*hidden/,
+             body
+           )
+  end
+
+  test "shows Frederic Haddad's testimonial", %{conn: conn} do
+    body = conn |> get(~p"/") |> html_response(200)
+
+    assert body =~ ~s(id="testimonial")
+    assert body =~ "Andrei is a one of a kind senior AI-powered developer"
+    assert body =~ "past 20 years or so"
+    assert body =~ "Frederic Haddad"
+    assert body =~ "Head of Business Development · FinancialDocs"
   end
 
   test "ask me about section offers factual conversation starters", %{conn: conn} do

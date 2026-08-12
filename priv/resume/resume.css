@@ -195,6 +195,26 @@ body {
   color: var(--color-light);
 }
 
+/* Testimonial */
+.testimonial {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.testimonial-quote {
+  font-size: 9.5pt;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--color-secondary);
+}
+
+.testimonial-attribution {
+  margin-top: var(--spacing-sm);
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
 /* Tech-only toggle */
 .tech-only {
   display: none;

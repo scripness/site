@@ -51,9 +51,12 @@ defmodule ScripnessWeb.Layouts do
           </a>
           <nav
             aria-label="Primary"
-            class="flex flex-wrap items-center gap-x-5 text-sm text-[#5d412d]"
+            class="flex w-full flex-wrap items-center justify-between gap-x-2 text-sm text-[#5d412d] sm:w-auto sm:justify-start sm:gap-x-5"
           >
-            <a href="#projects" class="border-b border-transparent py-2 hover:border-[#8d6b50]">
+            <a
+              href="#projects"
+              class="border-b border-transparent py-3 hover:border-[#8d6b50] sm:py-2"
+            >
               Work
             </a>
             <a
@@ -66,7 +69,7 @@ defmodule ScripnessWeb.Layouts do
               href="https://github.com/scripness"
               target="_blank"
               rel="noopener noreferrer"
-              class="hidden border-b border-transparent py-2 hover:border-[#8d6b50] sm:inline"
+              class="border-b border-transparent py-3 hover:border-[#8d6b50] sm:py-2"
             >
               GitHub
             </a>
@@ -74,19 +77,19 @@ defmodule ScripnessWeb.Layouts do
               href="https://www.linkedin.com/in/andrei-scripcaru/"
               target="_blank"
               rel="noopener noreferrer"
-              class="hidden border-b border-transparent py-2 hover:border-[#8d6b50] sm:inline"
+              class="border-b border-transparent py-3 hover:border-[#8d6b50] sm:py-2"
             >
               LinkedIn
             </a>
             <a
               id="header-email"
-              class="border-b border-transparent py-2 font-semibold hover:border-[#8d6b50]"
+              class="border-b border-transparent py-3 font-semibold hover:border-[#8d6b50] sm:py-2"
               href="mailto:mail@scripness.com"
             >
               Contact
             </a>
             <a
-              class="border-b border-transparent py-2 font-semibold hover:border-[#8d6b50]"
+              class="border-b border-transparent py-3 font-semibold hover:border-[#8d6b50] sm:py-2"
               href="/assets/andrei-scripcaru-technical.pdf"
             >
               Résumé
