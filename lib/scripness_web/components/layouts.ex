@@ -38,12 +38,7 @@ defmodule ScripnessWeb.Layouts do
     <div class="min-h-screen">
       <header class="px-5 pt-6 sm:px-8 sm:pt-8">
         <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-5 border-b border-[#b9a58e] pb-6">
-          <a href="/" class="flex items-center gap-3 text-[#30231a]">
-            <img
-              src={~p"/images/sigil.svg"}
-              alt=""
-              class="h-10 w-10 opacity-80"
-            />
+          <a href="/" class="text-[#30231a]">
             <div>
               <p class="font-serif text-xl font-semibold">Andrei Scripcaru</p>
               <p class="text-xs text-[#765d46]">Senior full-stack software engineer</p>
