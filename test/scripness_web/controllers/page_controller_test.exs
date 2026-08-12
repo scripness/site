@@ -17,10 +17,11 @@ defmodule ScripnessWeb.PageControllerTest do
     body = conn |> get(~p"/") |> html_response(200)
 
     assert body =~ "coding agents"
-    assert body =~ "agents to produce the implementation"
-    assert body =~ "guide the technical work"
-    assert body =~ "review the result, solve problems, test the system"
-    assert body =~ "I still own the engineering work"
+    assert body =~ "produce the implementation"
+    assert body =~ "clear issues and correct plans"
+    assert body =~ "acceptance criteria and a definition of done"
+    assert body =~ "deterministic tools, layered tests"
+    assert body =~ "automated and manual QA"
   end
 
   test "background summarizes professional breadth and working model", %{conn: conn} do
@@ -28,7 +29,7 @@ defmodule ScripnessWeb.PageControllerTest do
 
     assert body =~ ~s(id="background")
     assert body =~ "More than a decade building full-stack products"
-    assert body =~ "Coding agents produce the implementation; I guide and check the work"
+    assert body =~ "I define the work; agents implement it; tests and QA prove the result"
     assert body =~ "Mostly contract and remote"
     assert body =~ "across many teams, products, and codebases"
     assert body =~ "Moldova"
@@ -45,7 +46,8 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "admin tools, community"
     assert body =~ "moderation, search, notifications, analytics"
     assert body =~ "practical experience using coding agents"
-    assert body =~ "planning and system design through"
+    assert body =~ "clear issues, acceptance criteria, deterministic feedback loops"
+    assert body =~ "layered testing"
     assert body =~ "NestJS"
     assert body =~ "Next.js/React"
     assert body =~ "PostgreSQL"
@@ -91,22 +93,23 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Technical Profile"
     assert body =~ "Programming"
     assert body =~ "TypeScript, JavaScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi"
-    assert body =~ "design systems, guide agents, review their work, find problems"
-    assert body =~ "clear specifications, coding agents, code review"
-    assert body =~ "automated tests, browser testing, releases"
+    assert body =~ "design systems, give agents the right work, build reliable feedback loops"
+    assert body =~ "clear issues and plans, acceptance criteria, definition of done"
+    assert body =~ "State-machine, unit, integration, smoke, and end-to-end testing"
   end
 
   test "how I work explains the coding-agent workflow in plain language", %{conn: conn} do
     body = conn |> get(~p"/") |> html_response(200)
 
     assert body =~ ~s(id="how-i-work")
-    assert body =~ "Understand the problem"
-    assert body =~ "Plan the system"
-    assert body =~ "Guide the agents"
-    assert body =~ "Review and test"
+    assert body =~ "Define the issue"
+    assert body =~ "Check the plan"
+    assert body =~ "Set the feedback loops"
+    assert body =~ "Prove it works"
     assert body =~ "Get up to speed"
-    assert body =~ "I find the cause and make sure it is fixed properly"
-    assert body =~ "I decide when the result is ready to release"
+    assert body =~ "Deterministic rules, state machines, and feedback loops"
+    assert body =~ "Automated checks and QA run first"
+    assert body =~ "manually test the result"
     assert body =~ "understand unfamiliar systems"
     assert body =~ "without needing one familiar stack or domain"
   end
@@ -143,6 +146,7 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "80+ projects as a freelancer"
     assert body =~ "Legacy codebases"
     assert body =~ "Building with coding agents"
-    assert body =~ "remain responsible for the result"
+    assert body =~ "clear issues, correct plans, acceptance criteria"
+    assert body =~ "Deterministic feedback loops and layered tests"
   end
 end
