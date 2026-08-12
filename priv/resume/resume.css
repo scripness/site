@@ -121,8 +121,8 @@ body {
 .skills-list {
   list-style: none;
   display: grid;
-  grid-template-columns: auto auto auto;
-  gap: var(--spacing-xs) var(--spacing-lg);
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xs);
 }
 
 .skills-list li {
