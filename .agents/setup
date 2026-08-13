@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+elixir_version="1.15.7"
+otp_version="25"
+elixir_root="$HOME/.local/share/elixir/$elixir_version-otp-$otp_version"
+local_bin="$HOME/.local/bin"
+
+packages=(
+  build-essential
+  ca-certificates
+  chromium
+  curl
+  erlang-base
+  erlang-crypto
+  erlang-dev
+  erlang-eunit
+  erlang-inets
+  erlang-parsetools
+  erlang-public-key
+  erlang-runtime-tools
+  erlang-ssl
+  erlang-syntax-tools
+  erlang-tools
+  erlang-xmerl
+)
+
+missing_packages=()
+for package in "${packages[@]}"; do
+  if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q 'ok installed'; then
+    missing_packages+=("$package")
+  fi
+done
+
+if ((${#missing_packages[@]})); then
+  echo "Installing system packages: ${missing_packages[*]}"
+  sudo apt-get update
+  sudo apt-get install -y --no-install-recommends "${missing_packages[@]}"
+fi
+
+if [[ ! -x "$elixir_root/bin/elixir" ]]; then
+  echo "Installing Elixir $elixir_version for Erlang/OTP $otp_version"
+  archive="$(mktemp)"
+  trap 'rm -f "$archive"' EXIT
+  curl --fail --location --silent --show-error \
+    "https://github.com/elixir-lang/elixir/releases/download/v${elixir_version}/elixir-otp-${otp_version}.zip" \
+    --output "$archive"
+  mkdir -p "$elixir_root"
+  unzip -q "$archive" -d "$elixir_root"
+  rm -f "$archive"
+  trap - EXIT
+fi
+
+mkdir -p "$local_bin"
+for executable in elixir elixirc iex mix; do
+  ln -sfn "$elixir_root/bin/$executable" "$local_bin/$executable"
+done
+
+profile_marker="# scripness Elixir toolchain"
+if ! grep -Fqx "$profile_marker" "$HOME/.bash_profile" 2>/dev/null; then
+  cat >>"$HOME/.bash_profile" <<'EOF'
+
+# scripness Elixir toolchain
+export PATH="$HOME/.local/bin:$PATH"
+EOF
+fi
+
+export PATH="$local_bin:$PATH"
+
+echo "Installing Mix and project dependencies"
+mix local.hex --force
+mix local.rebar --force
+mix deps.get
+mix assets.setup
+mix assets.build
+
+echo "Orb setup complete"

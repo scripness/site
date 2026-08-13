@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# This project has no backing services to repair when an orb resumes.
+exit 0

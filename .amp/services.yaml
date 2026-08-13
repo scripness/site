@@ -1,0 +1,6 @@
+services:
+  web:
+    command: mix phx.server
+    portal:
+      title: Andrei Scripcaru
+      description: Phoenix development site
