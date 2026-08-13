@@ -48,12 +48,12 @@ config :scripness, ScripnessWeb.Endpoint,
     web_console_logger: true,
     patterns: [
       # Static assets, except user uploads
-      ~r"priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$"E,
+      ~r"priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)\z",
       # Gettext translations
-      ~r"priv/gettext/.*\.po$"E,
+      ~r"priv/gettext/.*\.po\z",
       # Router, Controllers, LiveViews and LiveComponents
-      ~r"lib/scripness_web/router\.ex$"E,
-      ~r"lib/scripness_web/(controllers|live|components)/.*\.(ex|heex)$"E
+      ~r"lib/scripness_web/router\.ex\z",
+      ~r"lib/scripness_web/(controllers|live|components)/.*\.(ex|heex)\z"
     ]
   ]
 

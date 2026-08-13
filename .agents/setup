@@ -65,7 +65,19 @@ export PATH="$HOME/.local/bin:$PATH"
 EOF
 fi
 
+locale_marker="# scripness UTF-8 locale"
+if ! grep -Fqx "$locale_marker" "$HOME/.bash_profile" 2>/dev/null; then
+  cat >>"$HOME/.bash_profile" <<'EOF'
+
+# scripness UTF-8 locale
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
+EOF
+fi
+
 export PATH="$local_bin:$PATH"
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
 
 echo "Installing Mix and project dependencies"
 mix local.hex --force
