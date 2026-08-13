@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-elixir_version="1.15.7"
+elixir_version="1.18.4"
 otp_version="25"
 elixir_root="$HOME/.local/share/elixir/$elixir_version-otp-$otp_version"
 local_bin="$HOME/.local/bin"
