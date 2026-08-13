@@ -23,6 +23,7 @@ packages=(
   erlang-syntax-tools
   erlang-tools
   erlang-xmerl
+  inotify-tools
 )
 
 missing_packages=()
