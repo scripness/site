@@ -24,6 +24,7 @@ packages=(
   erlang-tools
   erlang-xmerl
   inotify-tools
+  watchman
 )
 
 missing_packages=()
