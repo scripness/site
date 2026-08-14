@@ -93,9 +93,13 @@ defmodule ScripnessWeb.PageControllerTest do
     assert body =~ "Technical Profile"
     assert body =~ "Programming"
     assert body =~ "TypeScript, JavaScript, PHP, Ruby, Python, Kotlin, Go, C#, Elixir, Delphi"
+    assert body =~ "Frameworks"
+    assert body =~ "Express/AdonisJS, Phoenix"
+    assert body =~ "Terraform, CDK, OpenTofu, Ansible, Chef"
     assert body =~ "design systems, give agents the right work, build reliable feedback loops"
-    assert body =~ "clear issues and plans, acceptance criteria, definition of done"
-    assert body =~ "State-machine, unit, integration, smoke, and end-to-end testing"
+    assert body =~ "Microservices, monoliths, DDD"
+    assert body =~ "State-machine, unit, integration, acceptance, smoke, BDD"
+    assert body =~ "Gherkin, Jest, Cypress, Playwright, RSpec, Pest, and Cucumber"
   end
 
   test "how I work explains the coding-agent workflow in plain language", %{conn: conn} do
